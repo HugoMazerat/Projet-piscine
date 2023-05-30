@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vous</title>
+        <meta charset = "utf-8">
+    </head>
+
+    <body>
+
+        <h1>Vos Informations</h1>
+
+        <p>Entrez ici vos différentes informations personnelles, afin d'augmenter vos chances de trouver un stage ou un emploi qui vous correspond</p>
+
+        <form action="traitementVous.php" method="post">
+            <table>
+                <tr>
+                    <td>Votre nom :</td>
+                    <td><input type="text" name="nom"></td>
+                </tr>
+
+                <tr>
+                    <td>Votre prénom :</td>
+                    <td><input type="text" name="prenom"></td>
+                </tr>
+
+                <tr>
+                    <td>Votre photo :</td>
+                    <td><input type="file" name="photo"></td>
+                </tr>
+                <tr>
+                    <td>Votre date de naissance :</td>
+                    <td><input type="date" name="datenaissance"></td>
+                </tr>
+
+                <tr>
+                    <td>Votre e-mail:</td>
+                    <td><input type="text" name="mail"></td>
+                </tr>
+
+                <tr>
+                    <td>Votre numéro de téléphone :</td>
+                    <td><input type="number" name="tel"></td>
+                </tr>
+
+                <tr>
+                    <td>Une brève description de votre parcours :</td>
+                    <td><input type="text" name="bio"></td>
+                </tr>
+
+                <tr>
+                    <td>Votre expérience la plus pertinente :</td>
+                    <td><input type="text" name="experience"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="save" value="Sauvegarder mes changements">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="generer" value="Générer mon CV"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
