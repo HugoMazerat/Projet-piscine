@@ -10,6 +10,7 @@
 
         <p>Entrez ici vos différentes informations personnelles, afin d'augmenter vos chances de trouver un stage ou un emploi qui vous correspond</p>
 
+        <form action="traitementVous.php" method="POST"
         <table>
             <tr>
                 <td>Votre nom :</td>
@@ -21,6 +22,10 @@
                 <td><input type="text" name="prénom"></td>
             </tr>
 
+            <tr>
+                <td>Votre photo :</td>
+                <td><input type="file" name="votre photo"></td>
+            </tr>
             <tr>
                 <td>Votre date de naissance :</td>
                 <td><input type="date" name="date de naissance"></td>
@@ -67,5 +72,6 @@
                 <td><input type="button" name="generer" value="Générer mon CV" id="creerCV"></td>
             </tr>
         </table>
+
     </body>
 </html>
