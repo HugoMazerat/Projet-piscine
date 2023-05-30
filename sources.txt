@@ -1,1 +1,5 @@
 Nos sources pour le projet :
+https://www.hostpapa.com/knowledgebase/fr/knowledge-base/importerexporter-une-base-de-donnees-mysql-avec-phpmyadmin/#:~:text=suivre%20ces%20instructions%20%3A-,Ouvrez%20phpMyAdmin.,l'onglet%20%C2%AB%20Importer%20%C2%BB.
+https://www.hostinger.fr/tutoriels/comment-inserer-des-donnees-dans-une-table-mysql-via-php#:~:text=ligne%20num%C3%A9ro%2019%20%3A-,%24sql%20%3D%20%22INSERT%20INTO%20Etudiants%20(prenom%2C%20nom%2C,la%20base%20de%20donn%C3%A9es%20sp%C3%A9cifi%C3%A9e.
+https://openclassrooms.com/forum/sujet/inserer-image-dans-ma-base-de-donnee-phpmyadmin
+https://espritweb.fr/creer-une-base-de-donnees-en-7-minutes/
