@@ -3,3 +3,4 @@ https://www.hostpapa.com/knowledgebase/fr/knowledge-base/importerexporter-une-ba
 https://www.hostinger.fr/tutoriels/comment-inserer-des-donnees-dans-une-table-mysql-via-php#:~:text=ligne%20num%C3%A9ro%2019%20%3A-,%24sql%20%3D%20%22INSERT%20INTO%20Etudiants%20(prenom%2C%20nom%2C,la%20base%20de%20donn%C3%A9es%20sp%C3%A9cifi%C3%A9e.
 https://openclassrooms.com/forum/sujet/inserer-image-dans-ma-base-de-donnee-phpmyadmin
 https://espritweb.fr/creer-une-base-de-donnees-en-7-minutes/
+https://www.conseil-webmaster.com/formation/php/11-base-de-donnees-mysql.php#Afficher
