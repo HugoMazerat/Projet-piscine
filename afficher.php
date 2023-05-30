@@ -3,7 +3,7 @@
    //identifier votre BDD
    $database = "linkedln";
    //identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
-   $db_handle = mysqli_connect('localhost', 'root', '');
+   $db_handle = mysqli_connect('localhost', 'root', 'Gabi2002!');
    $db_found = mysqli_select_db($db_handle, $database);
 
     //Si la BDD existe
