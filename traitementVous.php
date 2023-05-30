@@ -1,4 +1,4 @@
-<?php//Probleme de lien entre le html et le php
+<?php
 
     //données du formulaire
     $nom = isset($_POST["nom"])? $_POST["nom"] : "";
@@ -26,7 +26,7 @@
     //$sql = "";
     echo "<p>". "Test" . "</p>";
     //Si la BDD existe
-    if (isset($_POST["save"])) {//Ici le pbm !!!!!!!!!!
+    if (isset($_POST["save"])) {
         echo "<p>"."Test2"."</p>";
         if ($db_found) {
             //code MySQL. $sql est basé sur le choix de l’utilisateur
@@ -50,15 +50,15 @@
             //afficher le resultat
             while ($data = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $data['nom'] . "</td>";
-                echo "<td>" . $data['prenom'] . "</td>";
-                $image = $data['Couverture'];
+                echo "<td>" . $data['Nom'] . "</td>";
+                echo "<td>" . $data['Prenom'] . "</td>";
+                $image = $data['Photo'];
                 echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>";
-                echo "<td>" . $data['datenaissance'] . "</td>";
-                echo "<td>" . $data['mail'] . "</td>";
-                echo "<td>" . $data['tel'] . "</td>";
-                echo "<td>" . $data['bio'] . "</td>";
-                echo "<td>" . $data['experience'] . "</td>";
+                echo "<td>" . $data['DateNaissance'] . "</td>";
+                echo "<td>" . $data['Email'] . "</td>";
+                echo "<td>" . $data['Tel'] . "</td>";
+                echo "<td>" . $data['Bio'] . "</td>";
+                echo "<td>" . $data['Projets'] . "</td>";
                 
                 echo "</tr>";
             }
