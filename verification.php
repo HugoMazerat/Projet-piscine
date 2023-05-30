@@ -1,5 +1,10 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "Gabi2002!", "linkedln"); //co à la base de données
+echo '<meta charset="utf-8">';
+//identifier votre BDD
+$database = "linkedln";
+//identifier votre serveur (localhost), utlisateur (root), mot de passe ("")
+$db_handle = mysqli_connect('localhost', 'root', 'Gabi2002!');
+$db_found = mysqli_select_db($db_handle, $database);
 
 if (mysqli_connect_errno()){ //vérificatio que la base de données existe
     die("pas de connexion avec la base de données" . mysqli_connect_error());
