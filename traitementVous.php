@@ -23,11 +23,9 @@
         $linkedin=0;
     }*/
     
-    //$sql = "";
-    echo "<p>". "Test" . "</p>";
+    //$sql = ""; 
     //Si la BDD existe
     if (isset($_POST["save"])) {
-        echo "<p>"."Test2"."</p>";
         if ($db_found) {
             //code MySQL. $sql est basé sur le choix de l’utilisateur
             $sql = "INSERT INTO personne(Nom, Prenom, Photo, DateNaissance, Email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
@@ -63,6 +61,39 @@
                 echo "</tr>";
             }
             echo "</table>";
+                
+        } else {
+            echo "<p>Database not found.</p>";
+        }
+    }
+
+    if (isset($_POST["generer"])) {
+        if ($db_found) {
+            //code MySQL. $sql est basé sur le choix de l’utilisateur
+            $sql = "INSERT INTO personne(Nom, Prenom, Photo, DateNaissance, Email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
+            $result = mysqli_query($db_handle, $sql);
+            echo "<p>Add successful.</p>";
+            $sql = "SELECT * FROM personne";
+            $result = mysqli_query($db_handle, $sql);
+            while ($data = mysqli_fetch_assoc($result)) {
+                $nom = $data['Nom'];
+                $prenom = $data['Prenom'];
+                $image = $data['Photo'];
+                $datenaissance = $data['DateNaissance'];
+                $mail = $data['Email'];
+                $tel = $data['Tel'];
+                $bio = $data['Bio'];
+                $experience = $data['Projets'];
+            }
+            // Open the file for writing
+            $file = fopen("example.html", "w");
+
+            // Write the HTML code to the file
+            $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom</p>\n<p>$prenom</p>\n<img src='$image' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</p>\n</body>\n</html>";
+            fwrite($file, $html);
+
+            // Close the file
+            fclose($file);
                 
         } else {
             echo "<p>Database not found.</p>";
