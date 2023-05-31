@@ -94,3 +94,48 @@ footer {
     text-align: center;
 }
 
+#communication-container {
+    display: flex;
+    justify-content: center;
+    background-color: #dddddd;
+    padding: 20px;
+}
+
+#contacts {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#contacts-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contacts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+#contacts-list p {
+    margin: 5px 0;
+    color: #ffffff; /* Ajout de cette ligne pour changer la couleur du texte en blanc */
+}
+
+#contacts-list a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#contacts-list a:hover {
+    text-decoration: underline;
+}
+
+#select-user {
+    background-color: #aaaaaa;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}

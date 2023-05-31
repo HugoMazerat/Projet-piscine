@@ -133,10 +133,12 @@ body {
 
 .received-message {
     color: red;
+    text-align: right;
 }
 
 .sent-message {
     color: green;
+    text-align: left;
 }
 
 #message-form-container {
@@ -163,5 +165,18 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #002855;
+    background-color: #003366;
 }
+
+
+.message-container {
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+
+
+
+
+
+

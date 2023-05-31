@@ -88,7 +88,7 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
 
 
         <!-- Deuxième partie : Messages échangés avec l'utilisateur -->
-        <section id="messages">
+        <section id="messages" class="message-container">
             <?php
             $recupMessages = $bdd->prepare('SELECT * FROM message WHERE (id_auteur = ? AND id_destinataire = ?) OR (id_auteur = ? AND id_destinataire = ?)');
             $recupMessages->execute(array($_SESSION['ID'], $getid, $getid, $_SESSION['ID']));
@@ -133,6 +133,11 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
 
 
     </footer>
+
+    <script>
+        var messageContainer = document.getElementById("messages");
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    </script>
 
 </body>
 
