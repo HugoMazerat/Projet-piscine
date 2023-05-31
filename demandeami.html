@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mes Demandes d'amis</title>
+        <link rel="stylesheet" type="texte/css" href="ajout.css">
+    </head>
+    <body>
+        <h1>Mes Demandes d'amis</h1>
+        <ul>
+            <?php forech ($demandeamis as $demande) { ?>
+                <li>
+                    <p>De: <?php echo $demande['demandeur_id']; ?></p>
+                    <P>Date de création: <?php echo $demande['temps']; ?></P>
+                    <form action="accepter_demande_ami.php" method="post">
+                        <input type="hidden" name="demande_id" value="<?php echo $demande['id']; ?>">
+                        <button type="submit">Accepter</button>
+                    </form>
+                    <form action="rejeter_demande_ami.php" method="post">
+                        <input type="hidden" name="demande_id" value="<?php echo $demande['id']; ?>">
+                        <button type="submit">Rejeter</button>
+                    </form>
+                </li>
+                </li>
+            <?php } ?>
+        </ul>
+    </body>
+</html>
