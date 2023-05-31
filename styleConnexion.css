@@ -10,7 +10,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #17f;
+    background-color: #003366;
 }
 section {
     background-color: #fff;
@@ -36,7 +36,7 @@ form  input {
 
 }
 form  input[type='submit'] {
-    background-color: #17f;
+    background-color: #003366;
     border: 0;
     color: #fff;
     margin-top: 15px;

@@ -4,13 +4,6 @@ session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
 ?>
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -50,14 +43,15 @@ $bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
         <a href="#Emplois">Emplois</a>
     </nav>
 
-    <!-- Slide Show -->
+    <!-- Partie centrale -->
     <section>
         <?php
-            $recupUser= $bdd->query('SELECT * FROM utilisateurs');
+            $recupUser= $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
+            $recupUser->execute(array($_SESSION['ID']));
             while($user = $recupUser->fetch()){
                 ?>
                 <a href="message.php?ID=<?php echo $user['ID'] ?>">
-                    <p><?php echo $user['email']; ?></p>
+                <p><?php echo $user['nom']; echo " "; echo $user['prenom']; echo " : "; echo $user['email']; ?></p>
                 </a>
                 <?php
             }

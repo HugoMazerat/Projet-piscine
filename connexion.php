@@ -37,7 +37,7 @@ if(isset ($_POST ['valider'])){
             <input type="submit" name="valider">
         </form>
         </section>
-        
+       
     </body>
 </html>
 
