@@ -16,3 +16,5 @@ https://www.perplexity.ai/search/d18d2d26-c593-4670-a8b3-d668825b11af?s=u
 https://youtu.be/8vIBeDVfOrs
 https://youtu.be/OZ2yDVcDjpc
 
+https://www.webslesson.info/2020/07/make-social-networking-sites-in-php-mysql-using-ajax.html
+
