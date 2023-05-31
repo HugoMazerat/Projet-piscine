@@ -11,10 +11,21 @@
                 <li>
                     <p>De: <?php echo $demande['demandeur_id']; ?></p>
                     <P>Date de création: <?php echo $demande['temps']; ?></P>
+                    <h1>Envoyer une demande d'ami</h1>
+                    
+                    <form action="nouvelle_demande.php" method="post">
+                    <label for="demandeur_id">Votre ID :</label>
+                    <input type="text" id="demandeur_id" name="demandeur_id"><br><br>
+                    <label for="receveur_id">ID de l'ami :</label>
+                    <input type="text" id="receveur_id" name="receveur_id"><br><br>
+                    <input type="submit" value="Envoyer la demande">
+                    </form>
+
                     <form action="accepter_demande_ami.php" method="post">
                         <input type="hidden" name="demande_id" value="<?php echo $demande['id']; ?>">
                         <button type="submit">Accepter</button>
                     </form>
+
                     <form action="rejeter_demande_ami.php" method="post">
                         <input type="hidden" name="demande_id" value="<?php echo $demande['id']; ?>">
                         <button type="submit">Rejeter</button>
