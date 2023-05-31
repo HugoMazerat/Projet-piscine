@@ -23,7 +23,7 @@
         $linkedin=0;
     }*/
     
-    //$sql = ""; 
+    $sql = ""; 
     //Si la BDD existe
     if (isset($_POST["save"])) {
         if ($db_found) {
