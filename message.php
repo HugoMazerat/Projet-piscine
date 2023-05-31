@@ -60,10 +60,10 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
 
     <!-- Navigation -->
     <nav class="topnav">
-        <a href="#Accueil">Accueil</a>
-        <a href="#MonReseau">Mon Reseau</a>
+        <a href="accueil.html">Accueil</a>
+        <a href="monReseau.php">Mon Reseau</a>
         <a href="#Vous" class="button bar-item">Vous</a>
-        <a href="#Notifications">Notifications</a>
+        <a href="notifications.php">Notifications</a>
         <a href="listeContacts.php">Messagerie</a>
         <a href="#Emplois">Emplois</a>
     </nav>

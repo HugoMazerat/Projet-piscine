@@ -1,10 +1,16 @@
+<?php
+session_start();
+// Connexion à la base de données
+$bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="styleNotifications.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleMonReseau.css">
     <title>ECEIn</title>
 
 </head>
@@ -29,7 +35,7 @@
 
     <!-- Navigation -->
     <nav class="topnav">
-        <a href="#accueil.html">Accueil</a>
+        <a href="acueil.html">Accueil</a>
         <a href="monReseau.php">Mon Reseau</a>
         <a href="#Vous" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
@@ -37,25 +43,33 @@
         <a href="#Emplois">Emplois</a>
     </nav>
 
-    <!-- Section notification  -->
-    <!-- Section Notifications -->
-    <section id="Notifications">
-        <h2>Notifications</h2>
-        <div class="notifications-container">
-            <div class="notification">
-                <div class="notification-header">
-                    <h3>Nom de l'utilisateur</h3>
-                    <p>Date de la notification</p>
-                </div>
-                <div class="notification-content">
-                    <p>Contenu de la notification</p>
-                </div>
-                <div class="notification-footer">
-                    <button class="like-button">J'aime</button>
-                </div>
+    <!-- Partie centrale -->
+    <section id="communication-container">
+        <div id="contacts">
+            <div id="contacts-header">
+                <h2>Les utilisateurs d'EceIn</h2>
             </div>
-            <!-- Ajoutez d'autres notifications en copiant le bloc "notification" -->
+            <div id="contacts-list">
+                <?php
+                $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
+                $recupUser->execute(array($_SESSION['ID']));
+                while ($user = $recupUser->fetch()) {
+                ?>
+                        <p><?php echo $user['nom'];
+                            echo " ";
+                            echo $user['prenom'];
+                            echo " : ";
+                            echo $user['email']; ?></p>
+                    </a>
+                <?php
+                }
+                ?>
+            </div>
+            <div id="select-user">
+                <p>Sélectionnez l'utilisateur à qui vous voulez envoyer une demande d'amie</p>
+            </div>
         </div>
+
     </section>
 
 
