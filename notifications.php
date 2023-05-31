@@ -1,16 +1,10 @@
-<?php
-session_start();
-// Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
-?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styleListeContacts.css">
+    <link href="styleNotifications.css" rel="stylesheet">
     <title>ECEIn</title>
 
 </head>
@@ -43,34 +37,25 @@ $bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
         <a href="#Emplois">Emplois</a>
     </nav>
 
-    <!-- Partie centrale -->
-    <section id="communication-container">
-        <div id="contacts">
-            <div id="contacts-header">
-                <h2>Vos contacts</h2>
+    <!-- Section notification  -->
+    <!-- Section Notifications -->
+    <section id="Notifications">
+        <h2>Notifications</h2>
+        <div class="notifications-container">
+            <div class="notification">
+                <div class="notification-header">
+                    <h3>Nom de l'utilisateur</h3>
+                    <p>Date de la notification</p>
+                </div>
+                <div class="notification-content">
+                    <p>Contenu de la notification</p>
+                </div>
+                <div class="notification-footer">
+                    <button class="like-button">J'aime</button>
+                </div>
             </div>
-            <div id="contacts-list">
-                <?php
-                $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
-                $recupUser->execute(array($_SESSION['ID']));
-                while ($user = $recupUser->fetch()) {
-                ?>
-                    <a href="message.php?ID=<?php echo $user['ID'] ?>">
-                        <p><?php echo $user['nom'];
-                            echo " ";
-                            echo $user['prenom'];
-                            echo " : ";
-                            echo $user['email']; ?></p>
-                    </a>
-                <?php
-                }
-                ?>
-            </div>
-            <div id="select-user">
-                <p>Sélectionnez l'utilisateur avec qui vous voulez parler</p>
-            </div>
+            <!-- Ajoutez d'autres notifications en copiant le bloc "notification" -->
         </div>
-
     </section>
 
 
