@@ -13,7 +13,7 @@
                     <P>Date de création: <?php echo $demande['temps']; ?></P>
                     <h1>Envoyer une demande d'ami</h1>
                     
-                    <form action="nouvelle_demande.php" method="post">
+                    <form action="nouvelle_demande.php" method="post">    <!--mettre en place une demande d'ami-->
                     <label for="demandeur_id">Votre ID :</label>
                     <input type="text" id="demandeur_id" name="demandeur_id"><br><br>
                     <label for="receveur_id">ID de l'ami :</label>
@@ -21,7 +21,7 @@
                     <input type="submit" value="Envoyer la demande">
                     </form>
 
-                    <form action="accepter_demande_ami.php" method="post">
+                    <form action="accepter_demande_ami.php" method="post">                <!--accepter ou rejeter une demande d'ami-->
                         <input type="hidden" name="demande_id" value="<?php echo $demande['id']; ?>">
                         <button type="submit">Accepter</button>
                     </form>
