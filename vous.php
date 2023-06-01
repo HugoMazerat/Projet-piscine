@@ -69,18 +69,12 @@
                         while ($user = $recupUser->fetch()) {
                             // Affichage des informations de l'utilisateur connecté
                             echo "<p class='bio'>" . $user['prenom'] . " " . $user['nom'] . "</p>";
-                            echo "<p class='bio'>" . $user['Bio'] . "</p>";
-                            echo "<p class='experience'>" . $user['Projets'] . "</p>";
                         }
                     } else {
                         echo "<p>Database not found.</p>";
                     }
 
                     ?>
-                </div>
-                <div class="profile-bar">
-                    <p>Envoyer un message<a href="#"><!--Insérer un logo de tchat (ce serait plus joli)--></a></p>
-                    <p>Ajouter cette personne à mon réseau<a href="#"><!--Insérer un logoe de demande en ami--></a></p>
                 </div>
             </div>
         </div>
@@ -135,12 +129,13 @@
             ?>
         </div>
         <!--<hr>-->
+        <div class="profile-sidebar">
+            <h2>Modifier votre profil</h2>
+            <p>Pour compléter votre profil ou le modifier, <a href="jiji.html">cliquez ici.</a></p>
+        </div>
     </div>
 
-    <div class="profile-sidebar">
-        <h2>Modifier votre profil</h2>
-        <p>Pour compléter votre profil ou le modifier, <a href="jiji.html">cliquez ici.</a></p>
-    </div>
+
 
 
 
