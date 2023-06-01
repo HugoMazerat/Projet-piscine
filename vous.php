@@ -49,37 +49,59 @@
 
 
                         <?php
-                           // $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '72srmxqo');
-                             
-                           // $db_handle = mysqli_connect('localhost','root','72srmxqo');///Changer MDP ----------------------------------------------
-                           // $db_found = mysqli_select_db($db_handle, $database);
 
-                           // $id = 17;
-                            $sql = "SELECT * FROM personne";
-                            if ($id != "") {
+                        //DEBUT CODE ADAPTE A PARTIR DE CELUI D'ANTOINE
+
+                           $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '72srmxqo');
+                           session_start();
+
+                           $database = 'linkedin';
+                           $db_handle = mysqli_connect('localhost','root','72srmxqo');///Changer MDP ----------------------------------------------
+                           $db_found = mysqli_select_db($db_handle, $database);
+
+                            $_SESSION['id'] = 17;
+
+                           $recupUser = $bdd->prepare('SELECT * FROM personne WHERE id = ?');
+                           $recupUser->execute(array($_SESSION['id']));
+                           
+                           
+                            
+
+                            //$sql = "SELECT * FROM personne";
+                            //if ($id != "") {
                             //on recherche le livre par son titre
-                            $sql .= " WHERE id LIKE '%$id%'";
-                            }
+                            //$sql .= " WHERE id LIKE '%$id%'";
+                            //}
 
                             if ($db_found) {
                                 
-                                //on affiche les données entrées
-                                $sql = "SELECT * FROM personne";
-                                $result = mysqli_query($db_handle, $sql);
+                        
 
-                                //afficher le resultat
-                                while ($data = mysqli_fetch_assoc($result)) {
-                                    //On commence par afficher la photo de profil
+                                //afficher le resultat ANCIENNE SOLUTION
 
-                                    $image = $data['Photo'];
-                                    echo "<img src='$image' class='profile-pic'>";
 
-                                    echo "<br>";//Saut de ligne
+                                //while ($data = mysqli_fetch_assoc($result)) {
+                                //    //On commence par afficher la photo de profil
+//
+                                //    $image = $data['Photo'];
+                                //    echo "<img src='$image' class='profile-pic'>";
+//
+                                //    echo "<br>";//Saut de ligne
+//
+                                //    echo "<h1>" . $data['Prenom'] . " " . $data['Nom'] . "</h1>";//Affichage du nom et prenom
+//
+                                //}
+                                //echo "</table>";
 
-                                    echo "<h1>" . $data['Prenom'] . " " . $data['Nom'] . "</h1>";//Affichage du nom et prenom
+                                //NOUVELLE SOLUTION
+
+                                while ($user = $recupUser->fetch()) {
+
+                                    //Affichage de la bio entrée par la personne
+
+                                    echo "<p class='bio'>" . $user['Prenom'] ." ". $user['Nom'] ."</p>";
 
                                 }
-                                echo "</table>";
                                     
                             } else {
                                 echo "<p>Database not found.</p>";
@@ -100,71 +122,55 @@
 
                 <?php
 
-                            session_start();
-                            $database = "linkedin"; 
-                            $db_handle = mysqli_connect('localhost','root','72srmxqo');///MDP -------------------------------------------------------------------------------
-                            $db_found = mysqli_select_db($db_handle, $database);
+                    $recupUser = $bdd->prepare('SELECT * FROM personne WHERE id = ?');
+                    $recupUser->execute(array($_SESSION['id']));
+                    if ($db_found) {
+                    
 
-                            $id = 17;
-                            $sql = "SELECT * FROM personne";
-                            if ($id != "") {
-                            //on recherche le livre par son titre
-                            $sql .= " WHERE id LIKE '%$id%'";
-                            }
+                        //afficher le resultat
+                        while ($user = $recupUser->fetch()) {
 
-                            if ($db_found) {
-                                
-                                //on affiche les données entrées
-                                $sql = "SELECT * FROM personne";
-                                $result = mysqli_query($db_handle, $sql);
+                            //Affichage de la bio entrée par la personne
 
-                                //afficher le resultat
-                                while ($data = mysqli_fetch_assoc($result)) {
+                            echo "<p class='bio'>" . $user['Bio'] . "</p>";
 
-                                    //Affichage de la bio entrée par la personne
-
-                                    echo "<p class='bio'>" . $data['Bio'] . "</p>";
-
-                                }
-                                
-                                    
-                            } else {
-                                echo "<p>Database not found.</p>";
-                            }
+                        }
                         
+                            
+                    } else {
+                        echo "<p>Database not found.</p>";
+                    }
+                
 
-                        ?>
+                ?>
             </div>
 
             <div class="profile-experience">
                 <h2>Expérience</h2>
                 <?php
                         
-                            $recupUser = $bdd->prepare('SELECT * FROM personne WHERE id != ?');
-                            $recupUser->execute(array($_SESSION['id']));
+                    $recupUser = $bdd->prepare('SELECT * FROM personne WHERE id = ?');
+                    $recupUser->execute(array($_SESSION['id']));       
 
-                            if ($db_found) {
-                                
-                                //on affiche les données entrées
-                                $sql = "SELECT * FROM personne";
-                                $result = mysqli_query($db_handle, $sql);
-
-                                //afficher le resultat
-                                while ($user = $recupUser->fetch()) {
-
-                                    //Affichage de l'expérience entrée par la personne
-
-                                    echo "<p class='experience'>" . $user['Projets'] . "</p>";
-
-                                }
-                                
-                                    
-                            } else {
-                                echo "<p>Database not found.</p>";
-                            }
+                    if ($db_found) {
                         
+                    
+                        //afficher le resultat
+                        while ($user = $recupUser->fetch()) {
 
-                        ?>
+                            //Affichage de l'expérience entrée par la personne
+
+                            echo "<p class='experience'>" . $user['Projets'] . "</p>";
+
+                        }
+                        
+                            
+                    } else {
+                        echo "<p>Database not found.</p>";
+                    }
+                
+
+                ?>
             </div>
             <!--<hr>-->
         </div>
