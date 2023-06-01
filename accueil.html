@@ -29,9 +29,9 @@
 
     <!-- Navigation -->
     <nav class="topnav">
-        <a href="#accueil.html">Accueil</a>
+        <a href="accueil.html">Accueil</a>
         <a href="monReseau.php">Mon Reseau</a>
-        <a href="#Vous" class="button bar-item">Vous</a>
+        <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
         <a href="listeContacts.php">Messagerie</a>
         <a href="#Emplois">Emplois</a>

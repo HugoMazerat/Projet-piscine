@@ -1,6 +1,6 @@
 <?php
 session_start(); // Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 ?>
 
 
@@ -36,9 +36,9 @@ $bdd = new PDO('mysql:host=localhost;dbname=pj1;charset=utf8', 'root', '');
 
     <!-- Navigation -->
     <nav class="topnav">
-        <a href="acueil.html">Accueil</a>
+        <a href="accueil.html">Accueil</a>
         <a href="monReseau.php">Mon Reseau</a>
-        <a href="#Vous" class="button bar-item">Vous</a>
+        <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
         <a href="listeContacts.php">Messagerie</a>
         <a href="#Emplois">Emplois</a>

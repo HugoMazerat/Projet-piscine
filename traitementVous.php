@@ -13,7 +13,7 @@
     $database = "linkedin"; 
 
     //Connection dans la BDD
-    $db_handle = mysqli_connect('localhost','root','72srmxqo');
+    $db_handle = mysqli_connect('localhost','root','');
     $db_found = mysqli_select_db($db_handle, $database); 
 
 
@@ -28,11 +28,11 @@
     if (isset($_POST["save"])) {
         if ($db_found) {
             //code MySQL. $sql est basé sur le choix de l’utilisateur
-            $sql = "INSERT INTO personne(Nom, Prenom, Photo, DateNaissance, Email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
+            $sql = "INSERT INTO utilisateurs(nom, prenom, Photo, DateNaissance, email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
             $result = mysqli_query($db_handle, $sql);
             echo "<p>Add successful.</p>";
             //on affiche les données entrées
-            $sql = "SELECT * FROM personne";
+            $sql = "SELECT * FROM utilisateurs";
             $result = mysqli_query($db_handle, $sql);
             echo "<h2>" . "Les données ajoutées sont:" . "</h2>";
             echo "<table>";
@@ -48,12 +48,12 @@
             //afficher le resultat
             while ($data = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $data['Nom'] . "</td>";
-                echo "<td>" . $data['Prenom'] . "</td>";
+                echo "<td>" . $data['nom'] . "</td>";
+                echo "<td>" . $data['prenom'] . "</td>";
                 $image = $data['Photo'];
                 echo "<td>" . "<img src='$image' height='120' width='100'>" . "</td>";
                 echo "<td>" . $data['DateNaissance'] . "</td>";
-                echo "<td>" . $data['Email'] . "</td>";
+                echo "<td>" . $data['email'] . "</td>";
                 echo "<td>" . $data['Tel'] . "</td>";
                 echo "<td>" . $data['Bio'] . "</td>";
                 echo "<td>" . $data['Projets'] . "</td>";
@@ -70,17 +70,17 @@
     if (isset($_POST["generer"])) {
         if ($db_found) {
             //code MySQL. $sql est basé sur le choix de l’utilisateur
-            $sql = "INSERT INTO personne(Nom, Prenom, Photo, DateNaissance, Email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
+            $sql = "INSERT INTO utilisateurs(nom, prenom, Photo, DateNaissance, email, Tel, Bio, Projets) VALUES('$nom', '$prenom', '$photo', '$datenaissance', '$mail', '$tel', '$bio', '$experience')";
             $result = mysqli_query($db_handle, $sql);
             echo "<p>Add successful.</p>";
-            $sql = "SELECT * FROM personne";
+            $sql = "SELECT * FROM utilisateurs";
             $result = mysqli_query($db_handle, $sql);
             while ($data = mysqli_fetch_assoc($result)) {
-                $nom = $data['Nom'];
-                $prenom = $data['Prenom'];
+                $nom = $data['nom'];
+                $prenom = $data['prenom'];
                 $image = $data['Photo'];
                 $datenaissance = $data['DateNaissance'];
-                $mail = $data['Email'];
+                $mail = $data['email'];
                 $tel = $data['Tel'];
                 $bio = $data['Bio'];
                 $experience = $data['Projets'];
@@ -89,7 +89,7 @@
             $file = fopen("example.html", "w");
 
             // Write the HTML code to the file
-            $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom</p>\n<p>$prenom</p>\n<img src='$image' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</p>\n</body>\n</html>";
+            $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom</p>\n<p>$prenom</p>\n<img src='$image' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</n>\n</body>\n</html>";
             fwrite($file, $html);
 
             // Close the file
@@ -99,5 +99,3 @@
             echo "<p>Database not found.</p>";
         }
     }
-?>
-
