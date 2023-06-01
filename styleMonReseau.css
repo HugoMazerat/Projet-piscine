@@ -1,0 +1,166 @@
+body {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f3f2ef;
+    padding: 0px;
+}
+
+header {
+
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+    position: relative;
+}
+
+.logo {
+    width: 100%;
+}
+
+
+.header_gauche {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0px;
+    float: center;
+    text-align: center;
+    position: relative;
+    top: 50%;
+}
+
+
+.header_droite {
+    max-width: 10%;
+    margin: 0px auto;
+    position: relative;
+    float: right;
+
+}
+
+
+.navBar {
+    display: flex;
+    list-style: none;
+    padding: .5em;
+}
+
+img {
+    display: block;
+    margin: 10px auto;
+    max-width: 50%;
+}
+
+
+.block {
+    border: 3px solid red;
+}
+
+
+
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #ebebeb;
+    color: black;
+
+    text-align: center;
+
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: black;
+
+    padding: 14px 16px;
+    text-decoration: none;
+
+
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+
+
+.column {
+    float: left;
+    padding: 15px;
+}
+
+/* Left and right column */
+.column.side {
+    padding: 0px;
+    width: 50%;
+}
+
+.profile-box {
+    width: 100%;
+    background: white;
+    
+}
+
+.profile-box img {
+    width: 100%;
+    padding: 4px;
+    
+
+}
+
+
+.profil-info {
+    padding: 0px 25px;
+
+}
+
+.profil-info img {
+    width: 130px;
+    border-radius: 50%;
+    background: pink;
+    padding: 4px;
+    margin-top: -45px;
+
+}
+
+.profil-info h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+
+}
+
+.profil-info h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+    .column.side,
+    .column.middle {
+        width: 100%;
+    }
+}
