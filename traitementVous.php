@@ -89,7 +89,7 @@
             $file = fopen("example.html", "w");
 
             // Write the HTML code to the file
-            $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom</p>\n<p>$prenom</p>\n<img src='$image' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</p>\n</body>\n</html>";
+            $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom</p>\n<p>$prenom</p>\n<img src='$image' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</n>\n</body>\n</html>";
             fwrite($file, $html);
 
             // Close the file
