@@ -34,7 +34,7 @@
         <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
         <a href="listeContacts.php">Messagerie</a>
-        <a href="#Emplois">Emplois</a>
+        <a href="emploi.php">Emplois</a>
     </nav>
 
     <!-- Section notification  -->
