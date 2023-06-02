@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$bdd = new PDO('mysql:host=localhost; dbname=pj1; charset=utf8;', 'root', '');
+$bdd = new PDO('mysql:host=localhost; dbname=pj1; charset=utf8;', 'root', '72srmxqo');
 if(isset ($_POST ['valider'])){
     if(!empty($_POST['email'])){
         $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE email = ?');
@@ -10,7 +10,7 @@ if(isset ($_POST ['valider'])){
 
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['ID'] = $recupUser->fetch()['ID'];
-            header('Location: accueil.html');
+            header('Location: accueil.php');
         }else{
             echo "Aucun utilisateur trouvé";
         }
