@@ -1,0 +1,20 @@
+Nos sources pour le projet :
+
+
+https://openclassrooms.com/forum/sujet/generer-pdf-depuis-html
+https://stackoverflow.com/questions/26221041/jspdf-create-pdf-from-html-and-open-in-new-window
+https://www.npmjs.com/package/jspdf
+https://www.delftstack.com/fr/howto/javascript/javascript-convert-html-to-pdf/#utilisez-la-biblioth%C3%A8que-jspdf-pour-convertir-html-en-pdf
+https://www.hostpapa.com/knowledgebase/fr/knowledge-base/importerexporter-une-base-de-donnees-mysql-avec-phpmyadmin/#:~:text=suivre%20ces%20instructions%20%3A-,Ouvrez%20phpMyAdmin.,l'onglet%20%C2%AB%20Importer%20%C2%BB.
+https://www.hostinger.fr/tutoriels/comment-inserer-des-donnees-dans-une-table-mysql-via-php#:~:text=ligne%20num%C3%A9ro%2019%20%3A-,%24sql%20%3D%20%22INSERT%20INTO%20Etudiants%20(prenom%2C%20nom%2C,la%20base%20de%20donn%C3%A9es%20sp%C3%A9cifi%C3%A9e.
+https://openclassrooms.com/forum/sujet/inserer-image-dans-ma-base-de-donnee-phpmyadmin
+https://espritweb.fr/creer-une-base-de-donnees-en-7-minutes/
+https://www.conseil-webmaster.com/formation/php/11-base-de-donnees-mysql.php#Afficher
+https://www.perplexity.ai/search/f5766784-586a-4cd3-9156-9e0fe6ea5ff9?s=u
+https://www.perplexity.ai/search/28bcf8bb-1b16-4a80-a5e1-cfd5af29b79e?s=u
+https://www.perplexity.ai/search/d18d2d26-c593-4670-a8b3-d668825b11af?s=u
+https://youtu.be/8vIBeDVfOrs
+https://youtu.be/OZ2yDVcDjpc
+
+https://www.webslesson.info/2020/07/make-social-networking-sites-in-php-mysql-using-ajax.html
+https://chat.openai.com/
