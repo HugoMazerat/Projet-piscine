@@ -59,7 +59,7 @@
                            $db_handle = mysqli_connect('localhost','root','72srmxqo');///Changer MDP ----------------------------------------------
                            $db_found = mysqli_select_db($db_handle, $database);
 
-                            $_SESSION['id'] = 17;
+                          // $_SESSION['id'] = 17;
 
                            $recupUser = $bdd->prepare('SELECT * FROM personne WHERE id = ?');
                            $recupUser->execute(array($_SESSION['id']));
