@@ -17,6 +17,7 @@ $mail = isset($_POST["mail"]) ? $_POST["mail"] : "";
 $tel = isset($_POST["tel"]) ? $_POST["tel"] : "";
 $bio = isset($_POST["bio"]) ? $_POST["bio"] : "";
 $experience = isset($_POST["experience"]) ? $_POST["experience"] : "";
+$stages = isset($_POST["stages"]) ? $_POST["stages"] : "";
 //identification BDD
 $database = "linkedin";
 
@@ -61,6 +62,9 @@ if ($result && mysqli_num_rows($result) > 0) {
     if (!empty($experience)) {
         $update_query .= "Projets = '$experience', ";
     }
+    if (!empty($stages)) {
+        $update_query .= "stages = '$stages', ";
+    }
 
     // Supprimer la virgule finale de la requête de mise à jour
     $update_query = rtrim($update_query, ", ");
@@ -98,12 +102,14 @@ if ($result && mysqli_num_rows($result) > 0) {
         $tel = isset($_POST["tel"]) ? $_POST["tel"] : $data['Tel'];
         $bio = isset($_POST["bio"]) ? $_POST["bio"] : $data['Bio'];
         $experience = isset($_POST["experience"]) ? $_POST["experience"] : $data['Projets'];
+        $stages = isset($_POST["stages"]) ? $_POST["stages"] : $data['stages'];
+        
 
         // Ouvrir le fichier en écriture
         $file = fopen("example.html", "w");
 
         // Écrire le code HTML dans le fichier
-        $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom $prenom</p>\n<img src='$photo' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</p>\n</body>\n</html>";
+        $html = "<html>\n<head>\n<title>CV</title>\n</head>\n<body>\n<p>$nom $prenom</p>\n<img src='$photo' height='120' width='100'>\n<p>$datenaissance</p>\n<p>$mail</p>\n<p>$tel</p>\n<p>$bio</p>\n<p>$experience</p>\n<p>$stages</p>\n</body>\n</html>";
         fwrite($file, $html);
 
         // Fermer le fichier

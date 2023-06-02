@@ -92,3 +92,61 @@ footer {
 }
 
 
+
+
+
+
+/* Ajout des styles pour le grand rectangle gris */
+.container {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* Ajout des styles pour le carré bleu au centre */
+.square {
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+/* Ajout des styles pour la boîte de description */
+.description-box {
+    background-color: #002b55;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Ajout des styles pour le formulaire */
+form {
+    margin-top: 20px;
+}
+
+/* Ajout des styles pour le formulaire */
+table {
+    width: 100%;
+}
+
+table td {
+    padding: 10px;
+}
+
+/* Ajout des styles pour le bouton de consulter le CV */
+input[type="button"] {
+    background-color: #003366;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Ajout des styles pour le bouton de consulter le CV au survol */
+input[type="button"]:hover {
+    background-color: #002b55;
+}

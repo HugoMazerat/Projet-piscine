@@ -81,7 +81,6 @@ footer {
 .container {
     display: flex;
     background-color: lightgray;
-    border-radius: 10px;
     padding: 20px;
 }
 
@@ -89,6 +88,7 @@ footer {
     flex-basis: 25%;
     background-color: #003366;
     border-radius: 10px;
+    color: white;
 }
 
 .profile-sidebar {
@@ -100,7 +100,8 @@ footer {
 }
 
 .profile-description,
-.profile-experience {
+.profile-experience,
+.profile-stages {
     background-color: #003366;
     color: white;
     padding: 20px;
@@ -109,7 +110,7 @@ footer {
 }
 
 .profile-container {
-    background: #fff;
+    background: #003366;
 }
 
 .profile-container-inner {

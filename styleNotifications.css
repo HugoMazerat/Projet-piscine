@@ -113,6 +113,7 @@ footer {
 .notification-footer {
     background-color: #002b55; /* Couleur de la bande supérieure et inférieure */
     padding: 5px;
+    border-radius: 10px;
 }
 
 .notification-content {

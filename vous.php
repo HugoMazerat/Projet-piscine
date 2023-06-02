@@ -29,7 +29,7 @@
         <a href="monReseau.php">Mon Reseau</a>
         <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
-        <a href="messagerie.php">Messagerie</a>
+        <a href="listeContacts.php">Messagerie</a>
         <a href="#Emplois">Emplois</a>
     </nav>
 
@@ -128,6 +128,34 @@
 
             ?>
         </div>
+
+
+        <div class="profile-stages">
+            <h2>Stages</h2>
+
+            <?php
+
+            $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
+            $recupUser->execute(array($_SESSION['ID']));
+            if ($db_found) {
+
+
+                //afficher le resultat
+                while ($user = $recupUser->fetch()) {
+
+                    //Affichage de la bio entrée par la personne
+
+                    echo "<p class='stages'>" . $user['stages'] . "</p>";
+                }
+            } else {
+                echo "<p>Database not found.</p>";
+            }
+
+
+            ?>
+        </div>
+
+
         <!--<hr>-->
         <div class="profile-sidebar">
             <h2>Modifier votre profil</h2>
