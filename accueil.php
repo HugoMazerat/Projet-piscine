@@ -117,11 +117,14 @@ $db_found= mysqli_select_db($db_handle, $database);
                         <input id="post_button" type="submit" value="valider">
                         <?php
 
+                        $image = $_COOKIE['nomPhoto'];
+                        $video = $_COOKIE['nomVideo'];
+
                     
                         if (isset($_POST["valider"])) {
                             if ($db_found) {
                                 //code MySQL. $sql est basé sur le choix de l’utilisateur
-                                $sql = "INSERT INTO posts(userid) VALUES('$user_id')";
+                                $sql = "INSERT INTO posts(image, video) VALUES('$image, $video')";
                                 $result = mysqli_query($db_handle, $sql);
                                 echo "<p>Add successful.</p>";
                             } else {
@@ -136,8 +139,8 @@ $db_found= mysqli_select_db($db_handle, $database);
 
             <!-- -------------EXEMPLE DE CODE------------ -->
             <?php
-                $name= $_COOKIE['name'];
-                echo $name;
+                //$name= $_COOKIE['name'];
+                //echo $name;
             ?>
             <!-- ---------------------------------------- -->
 
