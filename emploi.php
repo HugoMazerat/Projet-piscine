@@ -1,50 +1,69 @@
+<?php
+// Démarrez la session
+session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (isset($_SESSION['ID'])) {
+  // Utilisateur connecté
+  $userId = $_SESSION['ID'];
+
+  // Connexion à la base de données
+  $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", "");
+
+  // Récupérer les offres d'emploi
+  $offres = $conn->query("SELECT * FROM offres_emploi")->fetchAll(PDO::FETCH_ASSOC);
+} else {
+  // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+  header("Location: login.php");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Offres d'emploi</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Liste des offres d'emploi</title>
+  <style>
+    /* Votre CSS ici */
+  </style>
 </head>
+
 <body>
-  <h1>Offres d'emploi</h1>
-  <h2>Liste des offres d'emploi</h2>
+  <h1>Liste des offres d'emploi</h1>
 
-  <?php
-  // Connexion à la base de données
-  $connexion = mysqli_connect('localhost', 'root', '', 'linkedin');
-  if (!$connexion) {
-    die('Erreur de connexion à la base de données');
-  }
+  <table>
+    <tr>
+      <th>Titre</th>
+      <th>Descriptions</th>
+      <th>Créateur</th>
+      <th>Action</th>
+    </tr>
 
-  // Récupération des offres d'emploi avec les informations du créateur
-  $query = "SELECT offres_emploi.*, utilisateurs.nom, utilisateurs.prenom, utilisateurs.mail
-            FROM offres_emploi
-            INNER JOIN utilisateurs ON offres_emploi.utilisateur_id = utilisateurs.ID";
-  $result = mysqli_query($connexion, $query);
-
-  if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-      echo '<div class="offre">';
-      echo '<h3>' . $row['titre'] . '</h3>';
-      echo '<p>' . $row['descriptions'] . '</p>';
-      echo '<p>Créé par: ' . $row['prenom'] . ' ' . $row['nom'] . ' (' . $row['mail'] . ')</p>';
-      echo '<p><a href="postuler.php?id=' . $row['id'] . '">Postuler</a></p>';
-      echo '</div>';
-    }
-  } else {
-    echo 'Aucune offre d\'emploi disponible.';
-  }
-
-  // Fermeture de la connexion à la base de données
-  mysqli_close($connexion);
-  ?>
+    <?php foreach ($offres as $offre) : ?>
+      <tr>
+        <td><?php echo $offre['titre']; ?></td>
+        <td><?php echo $offre['descriptions']; ?></td>
+        <td><?php echo $offre['createur_id']; ?></td>
+        <td><a href="postuler.php?id=<?php echo $offre['id']; ?>">Postuler</a></td>
+      </tr>
+    <?php endforeach; ?>
+  </table>
 
   <h2>Créer une offre d'emploi</h2>
-  <form action="creer_offre.php" method="POST">
+
+  <form method="POST" action="creer_offre.php">
+    <input type="hidden" name="createur_id" value="<?php echo $userId; ?>">
+
+
     <label for="titre">Titre :</label>
-    <input type="text" name="titre" required><br>
-    <label for="descriptions">Descriptions :</label>
-    <textarea name="description" required></textarea><br>
+    <input type="text" name="titre" id="titre" required>
+
+    <label for="description">Description :</label>
+    <textarea name="descriptions" id="descriptions" required></textarea>
+
     <input type="submit" value="Créer">
   </form>
 </body>
+
 </html>
