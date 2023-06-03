@@ -27,7 +27,24 @@ $db_found= mysqli_select_db($db_handle, $database);
 //    }
 //} else {
 //    echo "<p>Database not found.</p>";
-//}
+//}   posts image postid
+
+if (isset($_POST['upload'])) {
+
+    $file = $_FILES['image']['name'];
+    $file2 = $_FILES['video']['name2'];
+    $file3 = $_FILES['post']['name3'];
+    $query = "INSERT INTO posts(image, video, post) VALUES('$file', '$file2, '$file3')";
+
+    $res = mysqli_query($db_handle, $query);
+
+    if ($res) {
+        move_uploaded_file($_FILES['image']['tmp_name'], "$file");
+        move_uploaded_file($_FILES['video']['tmp_name2'], "$file2");
+        move_uploaded_file($_FILES['post']['tmp_name3'], "$file3");
+    }
+    $err = array();
+}
 
 ?>
 
@@ -46,21 +63,21 @@ $db_found= mysqli_select_db($db_handle, $database);
 
 <body>
 
-    <script type="text/javascript" language="javascript">
+   <!-- <script type="text/javascript" language="javascript">
 
-    function entrerPhoto(){
-        nomPhoto = prompt("Entrer le nom du fichier que vous souhaitez publier.", "Mon Fichier");
-        alert(nomPhoto);
-        document.cookie = "nomPhoto = " + nomPhoto;//Permet de mettre dans les cookies du site la variable entrée
-    }
+   // function entrerPhoto(){
+   //     nomPhoto = prompt("Entrer le nom du fichier que vous souhaitez publier.", "Mon Fichier");
+   //     alert(nomPhoto);
+   //     document.cookie = "nomPhoto = " + nomPhoto;//Permet de mettre dans les cookies du site la variable entrée
+   // }
+//
+   // function entrerVideo(){
+   //     nomVideo = prompt("Entrer le nom du fichier que vous souhaitez publier.", "Mon Fichier");
+   //     alert(nomVideo);
+   //     document.cookie = "nomVideo = " + nomVideo;//Permet de mettre dans les cookies du site la variable entrée
+   // }
 
-    function entrerVideo(){
-        nomVideo = prompt("Entrer le nom du fichier que vous souhaitez publier.", "Mon Fichier");
-        alert(nomVideo);
-        document.cookie = "nomVideo = " + nomVideo;//Permet de mettre dans les cookies du site la variable entrée
-    }
-
-    </script>
+    </script>-->
 
     <div class="top-header-nav">
         <!-- Band Description -->
@@ -110,30 +127,35 @@ $db_found= mysqli_select_db($db_handle, $database);
                 </div>
 
                 <div class="create-post-link">
-                    <li><button onclick="entrerPhoto()"><img src="photo.png">Photo</button></li>
-                    <li><button onclick="entrerVideo()"><img src="video.png">Vidéo</button></li>
-                    <li><img src="evenement.png">Evenement</li>
-                    <li>
-                        <input id="post_button" type="submit" value="valider">
+                     <form class="my-5" method="post" enctype="multipart/form-data">
+                        <li><img src="photo.png">Photo<input type="file" name="image" class="form-control"></li>
+
+                        <li><img src="video.png">Vidéo<input type="file" name="video" class="form-control"></li>
+                        
+                    <!--<li><button onclick="entrerPhoto()"></button></li>-->
+                    <!--<li><button onclick="entrerVideo()"></button></li>-->
+                        <li><img src="evenement.png">Evenement</li>
+                        <li>
+                        <input type="submit" name="upload" value="UPLOAD" class="btn btn-success my3">
                         <?php
 
-                        $image = $_COOKIE['nomPhoto'];
-                        $video = $_COOKIE['nomVideo'];
-
-                    
-                        if (isset($_POST["valider"])) {
-                            if ($db_found) {
-                                //code MySQL. $sql est basé sur le choix de l’utilisateur
-                                $sql = "INSERT INTO posts(image, video) VALUES('$image, $video')";
-                                $result = mysqli_query($db_handle, $sql);
-                                echo "<p>Add successful.</p>";
-                            } else {
-                                echo "<p>Database not found.</p>";
-                            }
-                        }
+                       // $image = $_COOKIE['nomPhoto'];
+                       // $video = $_COOKIE['nomVideo'];
+//
+                    //
+                       // if (isset($_POST["valider"])) {
+                       //     if ($db_found) {
+                       //         //code MySQL. $sql est basé sur le choix de l’utilisateur
+                       //         $sql = "INSERT INTO posts(image, video) VALUES('$image, $video')";
+                       //         $result = mysqli_query($db_handle, $sql);
+                       //         echo "<p>Add successful.</p>";
+                       //     } else {
+                       //         echo "<p>Database not found.</p>";
+                       //     }
+                       // }
                         ?>
-                    </li>
-
+                        </li>
+                       </form>
                 </div>
             </div>
 
