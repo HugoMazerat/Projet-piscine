@@ -98,7 +98,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iam
     $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
     $recupUser->execute(array($_SESSION['ID']));
     ?>
-    "é"
     <!-- Partie centrale -->
     <section id="communication-container">
         <div id="contacts">
