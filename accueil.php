@@ -34,7 +34,7 @@ if (isset($_POST['upload'])) {
     $file = $_FILES['image']['name'];
     $file2 = $_FILES['video']['name'];
     $file3 = $_FILES['post']['name'];
-    
+
     $query = "INSERT INTO posts(image, video, post) VALUES('$file', '$file2', '$file3')";
 
     $res = mysqli_query($db_handle, $query);
@@ -129,7 +129,7 @@ if (isset($_POST['upload'])) {
 
                 <div class="create-post-link">
                      <form class="my-5" method="post" enctype="multipart/form-data">
-                        <input type="text" name="post" value="Write a post" class="form-control">
+                        <input type="file" name="post" value="Write a post" class="form-control">
                         <li><img src="photo.png">Photo<input type="file" name="image" class="form-control"></li>
 
                         <li><img src="video.png">Vidéo<input type="file" name="video" class="form-control"></li>
