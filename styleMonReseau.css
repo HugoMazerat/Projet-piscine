@@ -47,7 +47,7 @@ header {
     padding: .5em;
 }
 
-img {
+.header_droite img {    
     display: block;
     margin: 10px auto;
     max-width: 50%;
@@ -65,9 +65,7 @@ img {
 .topnav {
     overflow: hidden;
     background-color: #333;
-
     text-align: center;
-
 }
 
 /* Style the topnav links */
@@ -75,10 +73,8 @@ img {
     float: left;
     display: block;
     color: #f2f2f2;
-
     padding: 14px 16px;
-    text-decoration: none;
-    
+    text-decoration: none;  
 
 }
 
@@ -155,4 +151,85 @@ footer {
 #liste-amis h2,
 #demandes-amis h2 {
   color: white;
+}
+
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+
+
+.column {
+    float: left;
+    padding: 15px;
+}
+
+/* Left and right column */
+.column.side {
+    padding: 0px;
+    width: 50%;
+}
+
+.profile-box {
+    width: 100%;
+    background: white;
+    
+}
+
+.profile-box img {
+    width: 100%;
+    padding: 4px;
+    
+    
+
+}
+
+
+.profil-info {
+    padding: 10px 25px;
+
+}
+
+.profil-info img {
+    width: 100px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    margin-top: -45px;
+
+}
+
+.profil-info h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+
+}
+
+.profil-info h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    margin-bottom: 20px;
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+    .column.side,
+    .column.middle {
+        width: 100%;
+    }
 }
