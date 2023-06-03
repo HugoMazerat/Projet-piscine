@@ -46,26 +46,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iam
 
 
 
-    <div class="row">
-        <div class="column side">
-        </div>
-        <div class="column side block">
-            <div class="profile-box">
-                <img src="fond.jpg">
-                <div class="profil-info block">
-                    <img src="yann.jpg">
-                    <h1>Yann Jezequel</h1>
-                    <h3>Maître du monde</h3>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
     <?php
 
 
