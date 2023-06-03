@@ -59,8 +59,14 @@
 
                     if ($db_found) {
 
+                        
+                        if (isset($_GET['ID'])) {
+                            $_SESSION['ID'] = $_GET['ID'];
+                        }
+
                         // Récupérer l'ID de l'utilisateur connecté à partir de la session
                         $user_id = $_SESSION['ID'];
+                        
 
                         // Récupérer les informations de l'utilisateur connecté
                         $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
