@@ -58,6 +58,8 @@ if (isset($_POST['upload'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="styleAccueil.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script><!-- On récupère la biblio JQuery-->
+    <script src="carrousel.js" type="text/javascript"></script><!--On relie nos fichier html et js-->
     <title>ECEIn</title>
     
 </head>
@@ -245,7 +247,19 @@ if (isset($_POST['upload'])) {
         </div>
 
         <!-- Colonne droite -->
-        <div class="column side"></div>
+        <div class="column side">
+
+            <h2>Quelques photos permettant de présenter l'ECE</h2>
+
+            <div id="carrousel"> <!--Partie du code donnée par le corrigé, on a ajouté des alt au cas-où un fichier ne soit pas bien demandé-->
+                <ul><!--On a une liste non ordonnée-->
+                    <li class ="point"><img src="ece1.jfif" width="140" height="80"/></li>
+                    <li class ="point"><img src="ece2.jfif" width="140" height="80"/></li>
+                    <li class ="point"><img src="ece3.jfif" width="140" height="80"/></li>
+                    <li class ="point"><img src="ece4.jfif" width="140" height="80"/></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 

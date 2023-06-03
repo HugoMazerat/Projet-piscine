@@ -238,3 +238,46 @@ body {
       width: 100%;
     }
   }
+
+
+
+
+
+  /*--------------------------------Style Caroussel--------------------------------*/
+
+
+#carrousel {/*Permet de placer le carrousel au centre de la page*/
+    position: relative;
+    height: 200px;
+    width: 700px;
+    margin: auto;
+    align-items: center;
+}
+
+.point{
+    position: absolute;/*les 4 lignes suivantes permettent de placer notre liste au centre de la page*/
+    top: 50px;
+    align-items: center;
+    text-align: center;
+    color: red;/*Change la couleur du texte si jamais il est nécessaire d'en afficher*/
+    list-style-type: none;/*Permet d'éviter l'affichage des points lié à ul*/
+}
+
+
+.prev{/*Permet de définir ele style du bouton précédent. Les coordonnées left et top permettent de le placer sur la page*/
+    color: red;
+    position: absolute;
+    left: 75px;
+    top: 250px;
+    cursor:pointer;/*Permet de changer le style du curseur lorsque l'on passe dessus*/
+    
+}
+
+.next{/*A peu près la même chose que pour le bouton précédent mais pour le bouton suivant*/
+    color: red;
+    position: absolute;
+    right: 0px;
+    top: 250px;
+    cursor:pointer;
+}
+
