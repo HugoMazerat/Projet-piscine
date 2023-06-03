@@ -46,12 +46,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
 
 
-
-
-
-
-
-
     <?php
 
 
@@ -104,7 +98,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
     $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
     $recupUser->execute(array($_SESSION['ID']));
     ?>
-
     <!-- Partie centrale -->
     <section id="communication-container">
         <div id="contacts">
@@ -119,7 +112,33 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
                         echo $user['prenom'];
                         echo " : ";
                         echo $user['email']; ?>
-                        <!-- Formulaire pour envoyer une demande d'amitié -->
+
+                    <div class="row">
+                        
+                        <div class="column side">
+                            <div class="profile-box">
+                                <img src="fond.jpg">
+                                <div class="profil-info">
+                                    <img src="<?php echo $user['Photo'];?>"  width="100px">
+                                    <h1>
+                                        <?php echo $user['nom'];
+                                        echo " ";
+                                        echo $user['prenom'];
+                                        echo " : ";
+                                        echo $user['email']; ?>
+                                    </h1>
+                                    <h3>
+                                        <?php
+                                        echo $user['Bio'];
+                                        ?>
+                                    </h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulaire pour envoyer une demande d'amitié -->
                     <form method="post" action="">
                         <input type="hidden" name="destinataire" value="<?php echo $user['ID']; ?>">
                         <button type="submit" name="envoyer_demande">Envoyer demande d'amitié</button>
@@ -140,18 +159,20 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
             $recupDemandes->execute(array($_SESSION['ID']));
 
             while ($demande = $recupDemandes->fetch()) {
-            ?>
+                ?>
                 <div class="demande">
-                    <p><?php echo $demande['nom'];
+                    <p>
+                        <?php echo $demande['nom'];
                         echo " ";
-                        echo $demande['prenom']; ?> souhaite devenir votre ami(e).</p>
+                        echo $demande['prenom']; ?> souhaite devenir votre ami(e).
+                    </p>
                     <!-- Formulaire pour accepter la demande d'amitié -->
                     <form method="post" action="">
                         <input type="hidden" name="id_demande" value="<?php echo $demande['id']; ?>">
                         <button type="submit" name="accepter_demande">Accepter la demande</button>
                     </form>
                 </div>
-            <?php
+                <?php
             }
             ?>
         </section>
@@ -167,28 +188,18 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
             $recupAmis->execute(array($_SESSION['ID'], $_SESSION['ID'], $_SESSION['ID']));
 
             while ($ami = $recupAmis->fetch()) {
-            ?>
-                <p><?php echo $ami['nom'];
+                ?>
+                <p>
+                    <?php echo $ami['nom'];
                     echo " ";
-                    echo $ami['prenom']; ?></p>
-            <?php
+                    echo $ami['prenom']; ?>
+                </p>
+                <?php
             }
             ?>
         </section>
 
-
-
-
     </section>
-
-
-
-
-
-
-
-
-
 
 
     <!-- Footer -->
@@ -199,7 +210,10 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
         <u>(+33) 06 05 04 03 02</u><br />
         <a href="mailto:ecein-contact@gmail.com"> ecein-contact@gmail.com </a><br />
         <address>59 avenue Victor Hugo, 75016 Paris</address><br />
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.366109623976!2d2.285990976777601!3d48.851228701210104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b4f58251b%3A0x167f5a60fb94aa76!2sECE%20-%20Ecole%20d&#39;ing%C3%A9nieurs%20-%20Engineering%20school.!5e0!3m2!1sfr!2sfr!4v1685352343811!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.366109623976!2d2.285990976777601!3d48.851228701210104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b4f58251b%3A0x167f5a60fb94aa76!2sECE%20-%20Ecole%20d&#39;ing%C3%A9nieurs%20-%20Engineering%20school.!5e0!3m2!1sfr!2sfr!4v1685352343811!5m2!1sfr!2sfr"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
 
         <p>
             Droits d'auteur | Copyright © 2023, ECEIn corporation, Paris

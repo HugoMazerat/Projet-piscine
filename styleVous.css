@@ -101,7 +101,8 @@ footer {
 
 .profile-description,
 .profile-experience,
-.profile-stages {
+.profile-stages,
+.profile-Formation {
     background-color: #003366;
     color: white;
     padding: 20px;
@@ -133,4 +134,13 @@ footer {
 
 .profile-container p {
     font-weight: 500;
+}
+
+
+.profile-Formation {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }

@@ -30,7 +30,7 @@
         <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>
         <a href="listeContacts.php">Messagerie</a>
-        <a href="#Emplois">Emplois</a>
+        <a href="emploi.php">Emplois</a>
     </nav>
 
     <div class="container">
@@ -146,6 +146,32 @@
                     //Affichage de la bio entrée par la personne
 
                     echo "<p class='stages'>" . $user['stages'] . "</p>";
+                }
+            } else {
+                echo "<p>Database not found.</p>";
+            }
+
+
+            ?>
+        </div>
+
+
+        <div class="profile-Formation">
+            <h2>Formations</h2>
+
+            <?php
+
+            $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
+            $recupUser->execute(array($_SESSION['ID']));
+            if ($db_found) {
+
+
+                //afficher le resultat
+                while ($user = $recupUser->fetch()) {
+
+                    //Affichage de la bio entrée par la personne
+
+                    echo "<p class='Formation'>" . $user['Formation'] . "</p>";
                 }
             } else {
                 echo "<p>Database not found.</p>";
