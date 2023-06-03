@@ -35,7 +35,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
     <!-- Navigation -->
     <nav class="topnav">
-        <a href="accueil.html">Accueil</a>
+        <a href="accueil.php">Accueil</a>
         <a href="monReseau.php">Mon Reseau</a>
         <a href="vous.php" class="button bar-item">Vous</a>
         <a href="notifications.php">Notifications</a>

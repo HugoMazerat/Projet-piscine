@@ -17,7 +17,7 @@ if(isset($_POST['valider'])) {
             if($password === $user['password']) { // Remplacez 'mdp' par le nom réel de la colonne contenant le mot de passe dans votre base de données
                 $_SESSION['email'] = $email;
                 $_SESSION['ID'] = $user['ID'];
-                header('Location: accueil.html');
+                header('Location: accueil.php');
                 exit;
             } else {
                 echo "Mot de passe incorrect";
