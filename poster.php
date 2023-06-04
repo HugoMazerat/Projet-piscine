@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userResult = $bdd->query($userSql);
     $userData = $userResult->fetch();
 
-    $userId = $userData['id'];
+    $userId = $userData['ID'];
 
     // Insérer les informations du post dans la table "posts"
     $insertSql = "INSERT INTO posts (user_id, content, photo) VALUES ('$userId', '$postContent', '$destination')";

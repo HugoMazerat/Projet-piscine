@@ -48,14 +48,29 @@
         // Connexion à la base de données
         $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
-        // Récupérer les informations des posts à partir de la table "posts"
-        $sql = "SELECT * FROM posts";
+        // Récupérer l'ID de l'utilisateur connecté
+        $userID = $_SESSION['ID'];
 
-        //$sql = "SELECT posts.*, utilisateurs.nom, utilisateurs.prenom FROM posts
-        //INNER JOIN utilisateurs ON posts.user_id = utilisateurs.ID
-        //ORDER BY posts.created_at DESC";
+        // Récupérer la liste des amis de l'utilisateur
+        $sqlAmis = "SELECT id_u2 FROM amis WHERE id_u1 = $userID";
+        $resultAmis = $bdd->query($sqlAmis);
+        $amis = [];
+        while ($rowAmis = $resultAmis->fetch()) {
+            $amis[] = $rowAmis['id_u2'];
+        }
 
-        $result = $bdd->query($sql);
+        // Ajouter l'ID de l'utilisateur connecté à la liste des amis pour afficher également ses propres posts
+        $amis[] = $userID;
+
+        // Convertir la liste des amis en une chaîne séparée par des virgules pour l'utiliser dans la requête SQL
+        $amisStr = implode(',', $amis);
+
+        // Récupérer les informations des posts des amis ou partagés par les amis
+        $sqlPosts = "SELECT p.id, p.content, p.photo, p.created_at, u.nom, u.prenom
+            FROM posts p
+            INNER JOIN utilisateurs u ON p.user_id = u.ID
+            WHERE p.user_id IN ($amisStr) OR p.id IN (SELECT post_id FROM shares WHERE user_id IN ($amisStr))";
+        $result = $bdd->query($sqlPosts);
 
         // Afficher les posts
         while ($row = $result->fetch()) {
@@ -63,24 +78,58 @@
             $postContent = $row['content'];
             $postPhoto = $row['photo'];
             $postCreatedAt = $row['created_at'];
-            //$postUserNom = $row['nom'];
-            //$postUserPrenom = $row['prenom'];
-            //$postUserPhoto = $row['Photo'];
+            $postUserNom = $row['nom'];
+            $postUserPrenom = $row['prenom'];
+
+            // Récupérer le nombre de likes pour le post
+            $sqlLikes = "SELECT COUNT(*) AS count FROM likes WHERE post_id = $postId";
+            $likesResult = $bdd->query($sqlLikes);
+            $likesCount = $likesResult->fetch()['count'];
+
+            // Vérifier si l'utilisateur a déjà liké le post
+            $sqlCheckLike = "SELECT COUNT(*) AS count FROM likes WHERE post_id = $postId AND user_id = $userID";
+            $checkLikeResult = $bdd->query($sqlCheckLike);
+            $hasLiked = $checkLikeResult->fetch()['count'] > 0;
+
+            // Récupérer le nombre de partages pour le post
+            $sqlShares = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postId";
+            $sharesResult = $bdd->query($sqlShares);
+            $sharesCount = $sharesResult->fetch()['count'];
+
+            // Vérifier si l'utilisateur a déjà partagé le post
+            $sqlCheckShare = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postId AND user_id = $userID";
+            $checkShareResult = $bdd->query($sqlCheckShare);
+            $hasShared = $checkShareResult->fetch()['count'] > 0;
 
             echo '<div class="post">';
-            //echo '<div class="post-user">';
-            //echo '<img src="' . $postUserPhoto . '" alt="Photo utilisateur">';
-            //echo '<h3>' . $postUserPrenom . ' ' . $postUserNom . '</h3>';
-            //echo '</div>';
+            echo '<div class="post-user">';
+            echo '<h3>' . $postUserPrenom . ' ' . $postUserNom . '</h3>';
+            echo '</div>';
             echo '<div class="post-content">';
             echo '<p>' . $postContent . '</p>';
             if (!empty($postPhoto)) {
                 echo '<img src="' . $postPhoto . '" alt="Photo du post">';
             }
             echo '</div>';
+            echo '<div class="post-actions">';
+            if (!$hasLiked) {
+                echo '<a href="like.php?postID=' . $postId . '">Like</a>';
+            } else {
+                echo '<span>Vous avez déjà aimé ce post</span>';
+            }
+            echo '<span>Likes: ' . $likesCount . '</span>';
+            if (!$hasShared) {
+                echo '<a href="share.php?postID=' . $postId . '">Share</a>';
+            } else {
+                echo '<span>Vous avez déjà partagé ce post</span>';
+            }
+            echo '<span>Partages: ' . $sharesCount . '</span>';
+            echo '</div>';
             echo '</div>';
         }
         ?>
+
+
     </section>
 
     <!-- Footer -->
