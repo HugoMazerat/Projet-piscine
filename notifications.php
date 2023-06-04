@@ -43,20 +43,20 @@
         $userID = $_SESSION['ID']; // on récup l'ID 
 
         
-        $sqlNotifications = "SELECT notifications.content, notifications.created_at, notifications.author_name, notifications.author_lastname FROM notifications WHERE notifications.user_id = $userID ORDER BY notifications.created_at DESC"; // on récup les notifications
+        $sqlNotifications = "SELECT notifications.contenu, notifications.date, notifications.auteur_prenom, notifications.auteur_nom FROM notifications WHERE notifications.user_id = $userID ORDER BY notifications.date DESC"; // on récup les notifications
         $resultNotifications = $bdd->query($sqlNotifications);
 
         // Afficher les notifications
         while ($row = $resultNotifications->fetch()) {
-            $notificationContent = $row['content'];
-            $createdAt = $row['created_at'];
-            $authorName = $row['author_name'];
-            $authorLastName = $row['author_lastname'];
+            $notificationContenu = $row['contenu'];
+            $date = $row['date'];
+            $auteurPrenom = $row['auteur_prenom'];
+            $auteurNom = $row['auteur_nom'];
 
             echo '<div class="notification">';
-            echo '<p>' . $authorName . ' ' . $authorLastName . ' a posté :</p>';
-            echo '<p>' . $notificationContent . '</p>';
-            echo '<p>' . $createdAt . '</p>';
+            echo '<p>' . $auteurPrenom . ' ' . $auteurNom . ' a posté :</p>';
+            echo '<p>' . $notificationContenu . '</p>';
+            echo '<p>' . $date . '</p>';
             echo '</div>';
         }
         ?>

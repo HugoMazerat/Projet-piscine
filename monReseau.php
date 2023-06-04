@@ -18,7 +18,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
 <body>
 
-    <!-- Band Description -->
+    <!-- Bande Description -->
     <header>
 
         <div class="header_droite ">
@@ -49,23 +49,21 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
     <?php
 
 
-    // Envoi d'une demande d'amitié
+    // envoyer une demande 
     if (isset($_POST['envoyer_demande'])) {
         $auteur_demande = $_SESSION['ID'];
         $destinataire_demande = $_POST['destinataire'];
 
-        // Vérifier si une demande d'amitié existe déjà entre les deux utilisateurs
-        $checkDemandeExist = $bdd->prepare('SELECT * FROM demande_amis WHERE (id_auteur = ? AND id_destinataire = ?) OR (id_auteur = ? AND id_destinataire = ?)');
+        $checkDemandeExist = $bdd->prepare('SELECT * FROM demande_amis WHERE (id_auteur = ? AND id_destinataire = ?) OR (id_auteur = ? AND id_destinataire = ?)'); // vérif demande d'amie 
         $checkDemandeExist->execute(array($auteur_demande, $destinataire_demande, $destinataire_demande, $auteur_demande));
 
         if ($checkDemandeExist->rowCount() == 0) {
-            // Insérer la demande d'amitié dans la base de données
-            $insertDemande = $bdd->prepare('INSERT INTO demande_amis (id_auteur, id_destinataire, status) VALUES (?, ?, "en_attente")');
-            $insertDemande->execute(array($auteur_demande, $destinataire_demande));
+            $insertDemande = $bdd->prepare('INSERT INTO demande_amis (id_auteur, id_destinataire, status) VALUES (?, ?, "en_attente")'); // insérer les données dans la table
+            $insertDemande->execute(array($auteur_demande, $destinataire_demande)); 
 
-            echo "La demande d'amitié a été envoyée avec succès.";
+            echo "La demande d'amitié a été envoyée";
         } else {
-            echo "Une demande d'amitié entre ces deux utilisateurs existe déjà.";
+            echo "Une demande d'amitié existe déjà";
         }
     }
 
@@ -73,20 +71,17 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
     if (isset($_POST['accepter_demande'])) {
         $id_demande = $_POST['id_demande'];
 
-        // Mettre à jour le statut de la demande d'amitié pour l'accepter
-        $updateDemande = $bdd->prepare('UPDATE demande_amis SET status = "accepté" WHERE id = ?');
+        $updateDemande = $bdd->prepare('UPDATE demande_amis SET status = "accepté" WHERE id = ?'); // mise à jour du statut 
         $updateDemande->execute(array($id_demande));
 
-        // Récupérer les ID de l'auteur de la demande et du destinataire
-        $recupIDs = $bdd->prepare('SELECT id_auteur, id_destinataire FROM demande_amis WHERE id = ?');
+        $recupIDs = $bdd->prepare('SELECT id_auteur, id_destinataire FROM demande_amis WHERE id = ?'); // requet pour récup les ID 
         $recupIDs->execute(array($id_demande));
         $ids = $recupIDs->fetch();
 
         $auteur_demande = $ids['id_auteur'];
         $destinataire_demande = $ids['id_destinataire'];
 
-        // Insérer une nouvelle entrée dans la table "amis"
-        $insertAmi = $bdd->prepare('INSERT INTO amis (id_u1, id_u2) VALUES (?, ?)');
+        $insertAmi = $bdd->prepare('INSERT INTO amis (id_u1, id_u2) VALUES (?, ?)'); // insérer nouvelle donnée 
         $insertAmi->execute(array($auteur_demande, $destinataire_demande));
 
         echo "La demande d'amitié a été acceptée.";
@@ -94,7 +89,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
 
 
-    // Récupérer la liste des utilisateurs, à l'exception de l'utilisateur actuel
+    // Récupérer la liste des utilisateurs
     $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID != ?');
     $recupUser->execute(array($_SESSION['ID']));
     ?>
@@ -141,7 +136,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
                         </div>
                     </div>
 
-                    <!-- Formulaire pour envoyer une demande d'amitié -->
+                    <!-- envoyer une demande d'amie -->
                     <form method="post" action="">
                         <input type="hidden" name="destinataire" value="<?php echo $user['ID']; ?>">
                         <button type="submit" name="envoyer_demande">Envoyer demande d'amitié</button>
@@ -155,11 +150,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
         </div>
 
 
-        <!-- Section pour afficher les demandes d'amitié reçues -->
+        <!-- afficher les demandes d'amies reçues -->
         <section id="demandes-amis">
             <h2>Demandes d'amitié reçues</h2>
             <?php
-            // Récupérer les demandes d'amitié reçues par l'utilisateur actuel
+            // recup les demandes d'amies recues par l'utilisateur
             $recupDemandes = $bdd->prepare('SELECT demande_amis.*, utilisateurs.nom, utilisateurs.prenom FROM demande_amis INNER JOIN utilisateurs ON demande_amis.id_auteur = utilisateurs.ID WHERE id_destinataire = ? AND status = "en_attente"');
             $recupDemandes->execute(array($_SESSION['ID']));
 
@@ -171,7 +166,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
                         echo " ";
                         echo $demande['prenom']; ?> souhaite devenir votre ami(e).
                     </p>
-                    <!-- Formulaire pour accepter la demande d'amitié -->
+                    <!--  accepter la demande d'amitié -->
                     <form method="post" action="">
                         <input type="hidden" name="id_demande" value="<?php echo $demande['id']; ?>">
                         <button type="submit" name="accepter_demande">Accepter la demande</button>
@@ -184,11 +179,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
 
 
-        <!-- Section pour afficher la liste des amis -->
+        <!--  afficher la liste des amis -->
         <section id="liste-amis">
             <h2>Mes amis</h2>
             <?php
-            // Récupérer la liste des amis de l'utilisateur actuel
+            // recup la liste d'amie de l'utilisateur connecté
             $recupAmis = $bdd->prepare('SELECT utilisateurs.nom, utilisateurs.prenom FROM utilisateurs INNER JOIN amis ON utilisateurs.ID = amis.id_u1 OR utilisateurs.ID = amis.id_u2 WHERE (amis.id_u1 = ? OR amis.id_u2 = ?) AND utilisateurs.ID != ?');
             $recupAmis->execute(array($_SESSION['ID'], $_SESSION['ID'], $_SESSION['ID']));
 

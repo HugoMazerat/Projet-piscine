@@ -46,7 +46,6 @@
             <section id="create-post">
                 <div class="create-post">
                     <div class="create-post-input ">
-                        <img src="yann.jpg">
                         <form action="poster.php" method="post" enctype="multipart/form-data">
                             <textarea name="post-content" placeholder="Entrez votre texte ici"></textarea>
                     </div>
@@ -71,35 +70,29 @@
             <!-- Afficher les posts -->
             <section id="posts">
                 <?php
-                session_start();
-                // Connexion à la base de données
-                $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
+                session_start(); // démarrer la session
+                $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // connexion à la BDD
 
-                // Récupérer l'ID de l'utilisateur connecté
-                $userID = $_SESSION['ID'];
+                $userID = $_SESSION['ID']; // récup l'ID de l'utilisateur 
 
-                // Récupérer la liste des amis de l'utilisateur
-                $sqlAmis = "SELECT id_u2 FROM amis WHERE id_u1 = $userID";
+                $sqlAmis = "SELECT id_u2 FROM amis WHERE id_u1 = $userID"; // requete -> récup la liste des amis
                 $resultAmis = $bdd->query($sqlAmis);
                 $amis = [];
                 while ($rowAmis = $resultAmis->fetch()) {
                     $amis[] = $rowAmis['id_u2'];
                 }
 
-                // Ajouter l'ID de l'utilisateur connecté à la liste des amis pour afficher également ses propres posts
+
                 $amis[] = $userID;
 
-                // Convertir la liste des amis en une chaîne séparée par des virgules pour l'utiliser dans la requête SQL
-                $amisStr = implode(',', $amis);
+                
+                $amisStr = implode(',', $amis); // conversion liste  amis -> chaine pour l'utiliser en requete sql 
 
-                // Récupérer les informations des posts des amis ou partagés par les amis
-                $sqlPosts = "SELECT p.id, p.content, p.photo, p.created_at, u.nom, u.prenom
-            FROM posts p
-            INNER JOIN utilisateurs u ON p.user_id = u.ID
-            WHERE p.user_id IN ($amisStr) OR p.id IN (SELECT post_id FROM shares WHERE user_id IN ($amisStr))";
+                // requete sql recup les post
+                $sqlPosts = "SELECT p.id, p.content, p.photo, p.created_at, u.nom, u.prenom FROM posts p INNER JOIN utilisateurs u ON p.user_id = u.ID WHERE p.user_id IN ($amisStr) OR p.id IN (SELECT post_id FROM shares WHERE user_id IN ($amisStr))";
                 $result = $bdd->query($sqlPosts);
 
-                // Afficher les posts
+                // affichage des posts
                 while ($row = $result->fetch()) {
 
                     $postId = $row['id'];
@@ -109,61 +102,50 @@
                     $postUserNom = $row['nom'];
                     $postUserPrenom = $row['prenom'];
 
-                    // Récupérer le nombre de likes pour le post
+                    // recup likes pour le post
                     $sqlLikes = "SELECT COUNT(*) AS count FROM likes WHERE post_id = $postId";
                     $likesResult = $bdd->query($sqlLikes);
                     $likesCount = $likesResult->fetch()['count'];
 
-                    // Vérifier si l'utilisateur a déjà liké le post
+                    //verif like post
                     $sqlCheckLike = "SELECT COUNT(*) AS count FROM likes WHERE post_id = $postId AND user_id = $userID";
                     $checkLikeResult = $bdd->query($sqlCheckLike);
                     $hasLiked = $checkLikeResult->fetch()['count'] > 0;
 
-                    // Récupérer le nombre de partages pour le post
+                    // recup pour le post
                     $sqlShares = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postId";
                     $sharesResult = $bdd->query($sqlShares);
                     $sharesCount = $sharesResult->fetch()['count'];
 
-                    // Vérifier si l'utilisateur a déjà partagé le post
+                    // vérif partage le post
                     $sqlCheckShare = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postId AND user_id = $userID";
                     $checkShareResult = $bdd->query($sqlCheckShare);
                     $hasShared = $checkShareResult->fetch()['count'] > 0;
-
-                    echo '<div class="post">';
-                    echo '<div class="post-user">';
-                    echo '<h3>' . $postUserPrenom . ' ' . $postUserNom . '</h3>';
-                    echo '</div>';
-                    echo '<div class="post-content">';
-                    echo '<p>' . $postContent . '</p>';
-                    if (!empty($postPhoto)) {
-                        echo '<img src="' . $postPhoto . '" alt="Photo du post">';
-                    }
-                    echo '</div>';
-                    echo '<div class="post-actions">';
-                    if (!$hasLiked) {
-                        echo '<a href="like.php?postID=' . $postId . '">Like</a>';
-                    } else {
-                        echo '<span>Vous avez déjà aimé ce post</span>';
-                    }
-                    echo '<span>Likes: ' . $likesCount . '</span>';
-                    if (!$hasShared) {
-                        echo '<a href="share.php?postID=' . $postId . '">Share</a>';
-                    } else {
-                        echo '<span>Vous avez déjà partagé ce post</span>';
-                    }
-                    echo '<span>Partages: ' . $sharesCount . '</span>';
-                    echo '</div>';
-                    echo '</div>';
-
-
                     ?>
 
 
                     <div class="post">
                         <div class="post-author">
-                            <img src="yann.jpg">
-                            <?php echo '<h3>' . $postUserPrenom . ' ' . $postUserNom . '</h3>'; ?>
+                            <h1>
+                                <?php echo $postUserPrenom . ' ' . $postUserNom;
+                                ?>
+                            </h1>
+
                         </div>
+                        <p>
+                            <?php echo " ";
+                            echo " le : ";
+                            echo $postCreatedAt; ?>
+                        </p>
+
+
+                        <?php
+                        echo '<div class="post-content">';
+                        echo '<p>' . $postContent . '</p>';
+                        if (!empty($postPhoto)) {
+                            echo '<img src="' . $postPhoto . '" alt="Photo du post">';
+                        }
+                        echo '</div>'; ?>
 
 
                         <div class="post-like-share">
@@ -172,7 +154,7 @@
                                     <?php if (!$hasLiked) {
                                         echo '<a href="like.php?postID=' . $postId . '">Like</a>';
                                     } else {
-                                        echo '<span>Vous avez déjà aimé ce post</span>';
+                                        echo '<span>Vous avez déjà liké ce post</span>';
                                     }
                                     echo '<span> Likes: ' . $likesCount . '</span>'; ?>
                                 </div>
@@ -198,31 +180,6 @@
 
 
             </section>
-
-
-            <div class="post">
-                <div class="post-author">
-                    <img src="yann.jpg">
-                    <div>
-                        <h1>Yann Jezequel</h1>
-                        <small>Founder and CEO at ECE Paris</small>
-                        <small>2 hours ago</small>
-                    </div>
-                </div>
-
-                <img src="L1000680.jpg" width="100%">
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet pretium urna. Vivamus
-                    venenatis velit nec neque ultricies, eget elementum magna tristique. Quisque vehicula, risus eget
-                    aliquam placerat, purus leo tincidunt eros, eget luctus quam orci in velit. Praesent scelerisque
-                    tortor sed accumsan convallis.
-                </p>
-            </div>
-
-
-
-
-
 
         </div>
 

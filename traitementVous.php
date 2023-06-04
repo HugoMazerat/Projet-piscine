@@ -25,10 +25,10 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $bdd);
 
 // Recup l'ID de l'utilisateur avec la session
-$user_id = $_SESSION['ID'];
+$user_ID = $_SESSION['ID'];
 
 // On vérif si l'utilisateur connecté existe dans la BDD avec un requete SQL
-$sql = "SELECT * FROM utilisateurs WHERE ID = $user_id";
+$sql = "SELECT * FROM utilisateurs WHERE ID = $user_ID";
 $result = mysqli_query($db_handle, $sql);
 
 if ($result && mysqli_num_rows($result) > 0) // si l'utlisateur existe on met à jour les informations du formulaire 
@@ -71,25 +71,26 @@ if ($result && mysqli_num_rows($result) > 0) // si l'utlisateur existe on met à
 
     if (!empty($update_query))  // Si des nouvelles informations ont été saisies, exécuter la requête de mise à jour
     {
-        $sql = "UPDATE utilisateurs SET $update_query WHERE ID = $user_id"; // requete MySQL pour mettre à jour les informations de l'utilisateur
+        $sql = "UPDATE utilisateurs SET $update_query WHERE ID = $user_ID"; // requete MySQL pour mettre à jour les informations de l'utilisateur
         $result = mysqli_query($db_handle, $sql);
 
         if ($result) {
-            echo "<p>Mise à jour des données réussie.</p>";
+            echo "<p>Mise à jour des données</p>";
         } else {
-            echo "<p>Erreur de mise à jour des données.</p>";
+            echo "<p>Erreur mise à jour </p>";
         }
     } else {
-        echo "<p>Pas de nouvelle information rentrée.</p>";
+        echo "<p>Pas de nouvelle information saisie</p>";
     }
 
     if (isset($_POST["generer"])) {  // si l'utilisateur clique sur le bouton le CV -> on récpuère les informations dans la BDD 
 
-        $user_id = $_SESSION['ID'];
-        $sql = "SELECT * FROM utilisateurs WHERE ID = $user_id";
+        $user_ID = $_SESSION['ID'];
+        $sql = "SELECT * FROM utilisateurs WHERE ID = $user_ID";
         $result = mysqli_query($db_handle, $sql);
 
         if ($result && mysqli_num_rows($result) > 0) {
+
             $data = mysqli_fetch_assoc($result);
             $nom = isset($_POST["nom"]) ? $_POST["nom"] : $data['nom'];
             $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : $data['prenom'];

@@ -51,12 +51,12 @@
                             $_SESSION['ID'] = $_GET['ID'];
                         }
 
-                        $user_id = $_SESSION['ID']; // on repu l'ID de l'utilisateur connecté avec la session
+                        $user_ID = $_SESSION['ID']; // on repu l'ID de l'utilisateur connecté avec la session
 
 
-                        // Récupérer les informations de l'utilisateur connecté dans la BDD avec la requete
+                        // récup les informations de l'utilisateur connecté dans la BDD avec la requete
                         $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
-                        $recupUser->execute(array($user_id));
+                        $recupUser->execute(array($user_ID));
 
                         while ($user = $recupUser->fetch()) {
                             echo "<p class='bio'>" . $user['prenom'] . " " . $user['nom'] . "</p>"; // on affiche les informations de l'utilisateur connecté
@@ -72,9 +72,7 @@
 
         <div class="profile-description">
             <h2>Description</h2>
-
             <?php
-
             $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
             $recupUser->execute(array($_SESSION['ID']));
             if ($db_found) {

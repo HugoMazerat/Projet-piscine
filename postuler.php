@@ -6,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // on vérif si le formulaire est s
   $prenom = $_POST['prenom'];
   $email = $_POST['email'];
 
-  $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", ""); // Connexion à la BDD
+  $bdd = new PDO("mysql:host=localhost;dbname=linkedin", "root", ""); // Connexion à la BDD
 
-  $stmt = $conn->prepare("INSERT INTO postulations (offre_id, nom, prenom, email) VALUES (?, ?, ?, ?)"); // on insert les infos dans la table "postulations"
+  $stmt = $bdd->prepare("INSERT INTO postulations (offre_id, nom, prenom, email) VALUES (?, ?, ?, ?)"); // on insert les infos dans la table "postulations"
   $stmt->execute([$offreId, $nom, $prenom, $email]);
 
 
@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // on vérif si le formulaire est s
 
 $offreId = $_GET['id']; // on récup l'ID de l'offre  dans l'url
 
-$conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", ""); // Connexion à la BDD
+$bdd = new PDO("mysql:host=localhost;dbname=linkedin", "root", ""); // Connexion à la BDD
 
-$stmt = $conn->prepare("SELECT * FROM offres_emploi WHERE id = ?"); // recup des info de l'offre avec la requete SQL
+$stmt = $bdd->prepare("SELECT * FROM offres_emploi WHERE id = ?"); // recup des info de l'offre avec la requete SQL
 $stmt->execute([$offreId]);
 $offre = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
