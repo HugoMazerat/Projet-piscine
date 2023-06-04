@@ -63,19 +63,7 @@
                 </div>
             </section>
             <br>
-            <div class="create-post">
-                <div class="create-post-input">
-                    <img src="yann.jpg">
-                    <textarea raws="2" placeholder="Write a post"></textarea>
-                </div>
 
-                <div class="create-post-link">
-                    <li><img src="photo.png">Photo</li>
-                    <li><img src="video.png">Video</li>
-                    <li><img src="evenement.png">Evenement</li>
-                    <li>Poster</li>
-                </div>
-            </div>
 
 
 
@@ -113,6 +101,7 @@
 
                 // Afficher les posts
                 while ($row = $result->fetch()) {
+
                     $postId = $row['id'];
                     $postContent = $row['content'];
                     $postPhoto = $row['photo'];
@@ -165,26 +154,51 @@
                     echo '<span>Partages: ' . $sharesCount . '</span>';
                     echo '</div>';
                     echo '</div>';
+
+
+                    ?>
+
+
+                    <div class="post">
+                        <div class="post-author">
+                            <img src="yann.jpg">
+                            <?php echo '<h3>' . $postUserPrenom . ' ' . $postUserNom . '</h3>'; ?>
+                        </div>
+
+
+                        <div class="post-like-share">
+                            <li>
+                                <div class="create-post-link-fichier">
+                                    <?php if (!$hasLiked) {
+                                        echo '<a href="like.php?postID=' . $postId . '">Like</a>';
+                                    } else {
+                                        echo '<span>Vous avez déjà aimé ce post</span>';
+                                    }
+                                    echo '<span> Likes: ' . $likesCount . '</span>'; ?>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="create-post-link-fichier">
+                                    <?php if (!$hasShared) {
+                                        echo '<a href="share.php?postID=' . $postId . '">Share</a>';
+                                    } else {
+                                        echo '<span>Vous avez déjà partagé ce post</span>';
+                                    }
+                                    echo '<span>Partages: ' . $sharesCount . '</span>'; ?>
+                                </div>
+                            </li>
+                        </div>
+
+                        <?php
+
+
+
                 }
                 ?>
 
 
             </section>
 
-
-            <div class="create-post">
-                <div class="create-post-input">
-                    <img src="yann.jpg">
-                    <textarea raws="2" placeholder="Write a post"></textarea>
-                </div>
-
-                <div class="create-post-link">
-                    <li><img src="photo.png">Photo</li>
-                    <li><img src="video.png">Video</li>
-                    <li><img src="evenement.png">Evenement</li>
-                    <li>Poster</li>
-                </div>
-            </div>
 
             <div class="post">
                 <div class="post-author">
