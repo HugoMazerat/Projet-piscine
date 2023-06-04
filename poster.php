@@ -2,7 +2,7 @@
 session_start();
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['email'])) {
+if (!isset($_SESSION['ID'])) {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header("Location: connexion.php");
     exit();
@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($photoTmpName, $destination);
 
     // Récupérer les informations de l'utilisateur connecté
-    $email = $_SESSION['email'];
+    $userID = $_SESSION['ID'];
 
     // Effectuer une requête SQL pour récupérer les autres informations de l'utilisateur (nom, prénom, photo) à partir de la table "utilisateurs"
-    $userSql = "SELECT * FROM utilisateurs WHERE email = '$email'";
+    $userSql = "SELECT * FROM utilisateurs WHERE ID = '$userID'";
     $userResult = $bdd->query($userSql);
     $userData = $userResult->fetch();
 
@@ -37,8 +37,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $insertSql = "INSERT INTO posts (user_id, content, photo) VALUES ('$userId', '$postContent', '$destination')";
     $bdd->query($insertSql);
 
+    // Récupérer l'ID du post nouvellement inséré
+    $postId = $bdd->lastInsertId();
+
+    // Sélectionner tous les utilisateurs (excepté l'utilisateur actuel) pour envoyer la notification
+    $usersSql = "SELECT * FROM utilisateurs WHERE ID != '$userId'";
+    $usersResult = $bdd->query($usersSql);
+
+    // Vérifier si des utilisateurs ont été sélectionnés
+    if ($usersResult) {
+        // Parcourir les utilisateurs et envoyer une notification à chacun
+        while ($userData = $usersResult->fetch()) {
+            $notificationUserId = $userData['ID'];
+
+            // Insérer les informations de la notification dans la table "notifications" en ignorant les duplicatas
+            $insertNotificationSql = "INSERT IGNORE INTO notifications (user_id, post_id, content, author_name, author_lastname) VALUES ('$notificationUserId', '$postId', '$postContent', '{$userData['nom']}', '{$userData['prenom']}')";
+            $bdd->query($insertNotificationSql);
+        }
+    }
+
     // Rediriger vers la page d'accueil après avoir posté le contenu
     header("Location: accueil.php");
     exit();
 }
-?>
