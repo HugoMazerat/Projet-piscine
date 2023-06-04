@@ -1,9 +1,10 @@
-<?php
+
+?><?php
 
 $servername = "localhost";
 $username = "root";
-$password = "Gabi2002!";
-$dbname = "pj1";
+$password = "";
+$dbname = "linkedin";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -17,10 +18,10 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0){
     while ($row = $result->fetch_assoc()){
         echo "<h2>" . $row["Nom"] . "<h2>";
-        echo "<p>" . $row["Type"] . "<p>";
+        echo "<p>" . $row["Types"] . "<p>";
         echo "<p>" . $row["Salaire"] . "<p>";
         echo "<p>" . $row["Entreprise"] . "<p>";
-        echo "<p>" . $row["Postulant"] . "<p>";
+        echo "<p>" . $row["Durée"] . "<p>";
         echo "<br>";
     }
 }

@@ -1,65 +1,133 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Modifier vos informations</title>
-        <meta charset = "utf-8">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styleJiji.css" rel="stylesheet">
+    <title>ECEIn</title>
 
-    <body>
-        
-        <h1>Vos Informations</h1>
+</head>
+<body>
+    <!-- Band Description -->
+    <header>
 
-        <p>Entrez ici vos différentes informations personnelles, afin d'augmenter vos chances de trouver un stage ou un emploi qui vous correspond</p>
+        <div class="header_droite ">
+            <img class="logo" src="Logo.png">
+        </div>
 
-        <form action="traitementVous.php" method="post">
-            <table>
-                <tr>
-                    <td>Votre nom :</td>
-                    <td><input type="text" name="nom"></td>
-                </tr>
+        <div class="header_gauche ">
+            <h2> ECE In: Social Media Professionnel de l'ECE Paris</h2>
+        </div>
 
-                <tr>
-                    <td>Votre prénom :</td>
-                    <td><input type="text" name="prenom"></td>
-                </tr>
 
-                <tr>
-                    <td>Votre photo :</td>
-                    <td><input type="file" name="photo"></td>
-                </tr>
-                <tr>
-                    <td>Votre date de naissance :</td>
-                    <td><input type="date" name="datenaissance"></td>
-                </tr>
+    </header>
 
-                <tr>
-                    <td>Votre e-mail:</td>
-                    <td><input type="text" name="mail"></td>
-                </tr>
 
-                <tr>
-                    <td>Votre numéro de téléphone :</td>
-                    <td><input type="number" name="tel"></td>
-                </tr>
 
-                <tr>
-                    <td>Une brève description de votre parcours :</td>
-                    <td><input type="text" name="bio"></td>
-                </tr>
+    <!-- Navigation -->
+    <nav class="topnav">
+        <a href="accueil.html">Accueil</a>
+        <a href="monReseau.php">Mon Reseau</a>
+        <a href="vous.php" class="button bar-item">Vous</a>
+        <a href="notifications.php">Notifications</a>
+        <a href="listeContacts.php">Messagerie</a>
+        <a href="#Emplois">Emplois</a>
+    </nav>
 
-                <tr>
-                    <td>Votre expérience la plus pertinente :</td>
-                    <td><input type="text" name="experience"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="save" value="Sauvegarder mes changements">
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="generer" value="Générer mon CV"></td>
-                </tr>
-            </table>
-        </form>
-    </body>
+
+
+    <!-- Container milieu  -->
+    <div class="container">
+        <div class="square">
+            <h1>Vos Informations</h1>
+            <div class="description-box">
+                <p>Entrez ici vos différentes informations personnelles, afin d'augmenter vos chances de trouver un stage ou un emploi qui vous correspond</p>
+            </div>
+            <form action="traitementVous.php" method="post">
+                <table>
+                    <tr>
+                        <td>Votre nom :</td>
+                        <td><input type="text" name="nom"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Votre prénom :</td>
+                        <td><input type="text" name="prenom"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Votre photo :</td>
+                        <td><input type="file" name="photo"></td>
+                    </tr>
+                    <tr>
+                        <td>Votre date de naissance :</td>
+                        <td><input type="date" name="datenaissance"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Votre e-mail:</td>
+                        <td><input type="text" name="mail"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Votre numéro de téléphone :</td>
+                        <td><input type="number" name="tel"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Une brève description de votre parcours :</td>
+                        <td><input type="text" name="bio"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Votre expérience la plus pertinente :</td>
+                        <td><input type="text" name="experience"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Vos différents stages effectués :</td>
+                        <td><input type="text" name="stages"></td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <input type="submit" name="save" value="Sauvegarder mes changements">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="generer" value="Générer mon CV"></td>
+                        <td><input type="button" name="consulter" value="Consulter  mon CV"
+                                onclick="self.location.href='example.html'"></td>
+                    </tr>
+                    <!-- Autres champs du formulaire -->
+                </table>
+            </form>
+        </div>
+    </div>
+    <!-- ---------- -->
+
+
+
+    <!-- Footer -->
+    <footer>
+
+
+        <h3> Contacts :</h3><br />
+        <u>(+33) 06 05 04 03 02</u><br />
+        <a href="mailto:ecein-contact@gmail.com"> ecein-contact@gmail.com </a><br />
+        <address>59 avenue Victor Hugo, 75016 Paris</address><br />
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.366109623976!2d2.285990976777601!3d48.851228701210104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6701b4f58251b%3A0x167f5a60fb94aa76!2sECE%20-%20Ecole%20d&#39;ing%C3%A9nieurs%20-%20Engineering%20school.!5e0!3m2!1sfr!2sfr!4v1685352343811!5m2!1sfr!2sfr"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <p>
+            Droits d'auteur | Copyright © 2023, ECEIn corporation, Paris
+        </p>
+
+
+    </footer>
+
+</body>
+
 </html>

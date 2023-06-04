@@ -1,0 +1,233 @@
+body {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 0px;
+}
+
+header {
+    
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px ;
+    position: relative;
+}
+
+.logo {
+    width: 100%;
+}
+
+
+.header_gauche {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0px;
+    float: center;
+    text-align: center;
+    position: relative;
+    top: 50%;
+}
+
+
+.header_droite {
+    max-width: 10%;
+    margin: 0px auto;
+    position: relative;
+    float: right;
+
+}
+
+
+.navBar {
+    display: flex;
+    list-style: none;
+    padding: .5em;
+}
+
+.header_droite img {    
+    display: block;
+    margin: 10px auto;
+    max-width: 50%;
+}
+
+
+.block {
+    border: 3px solid red;
+}
+
+
+
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+    text-align: center;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;  
+
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+footer {
+    padding: 20px ;
+    text-align: center;
+}
+
+#communication-container {
+    display: flex;
+    justify-content: center;
+    background-color: #dddddd;
+    padding: 20px;
+}
+
+#contacts {
+    background-color: #003366;
+    color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#contacts-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contacts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+#contacts-list p {
+    margin: 5px 0;
+    color: #ffffff; /* Ajout de cette ligne pour changer la couleur du texte en blanc */
+}
+
+#contacts-list a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#contacts-list a:hover {
+    text-decoration: underline;
+}
+
+#select-user {
+    background-color: #aaaaaa;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+#liste-amis,
+#demandes-amis {
+  background-color: #003366;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 50%; /* Largeur du carré bleu */
+  color: white;
+}
+
+#liste-amis h2,
+#demandes-amis h2 {
+  color: white;
+}
+
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+
+
+.column {
+    float: left;
+    padding: 15px;
+}
+
+/* Left and right column */
+.column.side {
+    padding: 0px;
+    width: 50%;
+}
+
+.profile-box {
+    width: 100%;
+    background: white;
+    
+}
+
+.profile-box img {
+    width: 100%;
+    padding: 4px;
+    
+    
+
+}
+
+
+.profil-info {
+    padding: 10px 25px;
+
+}
+
+.profil-info img {
+    width: 100px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    margin-top: -45px;
+
+}
+
+.profil-info h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+
+}
+
+.profil-info h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+    margin-bottom: 20px;
+
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+
+    .column.side,
+    .column.middle {
+        width: 100%;
+    }
+}
