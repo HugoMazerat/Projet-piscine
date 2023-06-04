@@ -9,9 +9,8 @@
 </head>
 
 <body>
-    <!-- Band Description -->
+    <!-- Bande Description -->
     <header>
-
         <div class="header_droite">
             <img class="logo" src="Logo.png">
         </div>
@@ -37,47 +36,33 @@
         <div class="profile-main">
             <div class="profile-container">
                 <div class="profile-container-inner">
-
-                    <!-- <form action="donnesVous.php" method="post">
-                            <p>ici</p>
-                        </form>-->
-
-                    <!--Les lignes suivantes servent à tester le css et devront être enlevées-->
-                    <!--<img src="L1000662.JPG" class="profile-pic">
-                        <h1>Hugo Mazerat</h1>
-                        <p>Je code des sites</p>-->
-
-
                     <?php
 
                     $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
                     session_start();
-
                     $database = 'linkedin';
-                    $db_handle = mysqli_connect('localhost', 'root', ''); ///Changer MDP ----------------------------------------------
+                    $db_handle = mysqli_connect('localhost', 'root', '');
                     $db_found = mysqli_select_db($db_handle, $database);
 
                     if ($db_found) {
 
-                        
+
                         if (isset($_GET['ID'])) {
                             $_SESSION['ID'] = $_GET['ID'];
                         }
 
-                        // Récupérer l'ID de l'utilisateur connecté à partir de la session
-                        $user_id = $_SESSION['ID'];
-                        
+                        $user_id = $_SESSION['ID']; // on repu l'ID de l'utilisateur connecté avec la session
 
-                        // Récupérer les informations de l'utilisateur connecté
+
+                        // Récupérer les informations de l'utilisateur connecté dans la BDD avec la requete
                         $recupUser = $bdd->prepare('SELECT * FROM utilisateurs WHERE ID = ?');
                         $recupUser->execute(array($user_id));
 
                         while ($user = $recupUser->fetch()) {
-                            // Affichage des informations de l'utilisateur connecté
-                            echo "<p class='bio'>" . $user['prenom'] . " " . $user['nom'] . "</p>";
+                            echo "<p class='bio'>" . $user['prenom'] . " " . $user['nom'] . "</p>"; // on affiche les informations de l'utilisateur connecté
                         }
                     } else {
-                        echo "<p>Database not found.</p>";
+                        echo "<p>Base de donnée pas trouvée.</p>";
                     }
 
                     ?>
@@ -103,7 +88,7 @@
                     echo "<p class='bio'>" . $user['Bio'] . "</p>";
                 }
             } else {
-                echo "<p>Database not found.</p>";
+                echo "<p>Base de donnée pas trouvée.</p>";
             }
 
 
@@ -128,7 +113,7 @@
                     echo "<p class='experience'>" . $user['Projets'] . "</p>";
                 }
             } else {
-                echo "<p>Database not found.</p>";
+                echo "<p>Base de donnée pas trouvée.</p>";
             }
 
 
@@ -154,7 +139,7 @@
                     echo "<p class='stages'>" . $user['stages'] . "</p>";
                 }
             } else {
-                echo "<p>Database not found.</p>";
+                echo "<p>Base de donnée pas trouvée.</p>";
             }
 
 
