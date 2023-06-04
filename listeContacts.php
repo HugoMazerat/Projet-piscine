@@ -1,7 +1,6 @@
 <?php
-session_start();
-// Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
+session_start(); // démarrage de la session
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // Connexion à la base de données
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +11,11 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styleListeContacts.css">
     <title>ECEIn</title>
-
 </head>
 
 <body>
-
     <!-- Band Description -->
     <header>
-
         <div class="header_droite ">
             <img class="logo" src="Logo.png">
         </div>
@@ -27,12 +23,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
         <div class="header_gauche ">
             <h2> ECE In: Social Media Professionnel de l'ECE Paris</h2>
         </div>
-
-
     </header>
-
-
-
     <!-- Navigation -->
     <nav class="topnav">
         <a href="accueil.php">Accueil</a>

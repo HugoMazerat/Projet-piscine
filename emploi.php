@@ -39,21 +39,14 @@
 
   <!--  Emploi -->
   <?php
-  // Démarrez la session
-  session_start();
+  session_start(); // démarragede la session
 
-  // Vérifier si l'utilisateur est connecté
   if (isset($_SESSION['ID'])) {
-    // Utilisateur connecté
-    $userId = $_SESSION['ID'];
+    $userId = $_SESSION['ID']; 
 
-    // Connexion à la base de données
-    $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", "");
-
-    // Récupérer les offres d'emploi
-    $offres = $conn->query("SELECT * FROM offres_emploi")->fetchAll(PDO::FETCH_ASSOC);
+    $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", ""); // connexion à la BDD
+    $offres = $conn->query("SELECT * FROM offres_emploi")->fetchAll(PDO::FETCH_ASSOC); // requete sql pour récup offres emplois
   } else {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
     header("Location: connexion.php");
     exit();
   }

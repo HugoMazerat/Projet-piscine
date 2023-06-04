@@ -12,15 +12,13 @@ if (isset($_POST['valider'])) {
 
         if ($recupUser->rowCount() > 0) {
             $user = $recupUser->fetch();
-
-            // Vérification du mot de passe
-            if ($password === $user['password']) {
+            if ($password === $user['password']) { // on vérif le mdp
                 $_SESSION['email'] = $email;
                 $_SESSION['ID'] = $user['ID'];
                 header('Location: accueil.php');
                 exit;
             } else {
-                echo "Mot de passe incorrect";
+                echo "Le mot de passe est incorrect";
             }
         } else {
             echo "Aucun utilisateur trouvé";

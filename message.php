@@ -1,8 +1,7 @@
 <?php
-session_start();
-// Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
-if (!$_SESSION['email']) {
+session_start(); // démarrage de la session
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // Connexion à la base de données
+if (!$_SESSION['ID']) {
     header('Location: connexion.php');
 }
 
@@ -14,7 +13,7 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
     if ($recupUser->rowCount() > 0) {
         if (isset($_POST['envoyer'])) {
             $message = htmlspecialchars($_POST['message']);
-            $id_auteur = isset($_SESSION['ID']) ? $_SESSION['ID'] : null; // Vérification de $_SESSION['ID']
+            $id_auteur = isset($_SESSION['ID']) ? $_SESSION['ID'] : null; 
             $insererMessage = $bdd->prepare('INSERT INTO message(message, id_destinataire, id_auteur)VALUES(?, ?, ?)');
             $insererMessage->execute(array($message, $getid, $_SESSION['ID']));
         }
@@ -70,13 +69,13 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
 
     <!-- Partie centrale -->
 
-    <!-- Espace général dédié à la page de communication -->
+    <!-- container pour la comm -->
     <div id="communication-container">
 
-        <!-- Première partie : Nom, prénom et email de l'utilisateur -->
+        <!-- Nom, prénom et email -->
         <div id="user-info">
             <?php
-            // Code pour récupérer et afficher le nom, prénom et email de l'utilisateur
+            //récupérer et afficher le nom, prénom et email de l'utilisateur
             $recupUser = $bdd->prepare('SELECT nom, prenom, email FROM utilisateurs WHERE ID = ?');
             $recupUser->execute(array($getid));
             $userInfo = $recupUser->fetch();
@@ -87,7 +86,7 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
         </div>
 
 
-        <!-- Deuxième partie : Messages échangés avec l'utilisateur -->
+        <!-- Messages -->
         <section id="messages" class="message-container">
             <?php
             $recupMessages = $bdd->prepare('SELECT * FROM message WHERE (id_auteur = ? AND id_destinataire = ?) OR (id_auteur = ? AND id_destinataire = ?)');
@@ -106,7 +105,7 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
             ?>
         </section>
 
-        <!-- Troisième partie : Formulaire pour écrire un message -->
+        <!-- écrire message -->
         <form method="POST" action="">
             <textarea name="message"></textarea>
             <br /><br />
@@ -135,9 +134,10 @@ if (isset($_GET['ID']) and !empty($_GET['ID'])) {
     </footer>
 
     <script>
-        var messageContainer = document.getElementById("messages");
+        var messageContainer = document.getElementById("messages"); // pour scroller les messages
         messageContainer.scrollTop = messageContainer.scrollHeight;
     </script>
+    
 
 </body>
 

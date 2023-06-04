@@ -1,6 +1,6 @@
 <?php
-session_start();
+session_start(); // démarrage session
 $_SESSION = array();
-session_destroy(); // Déconnexion à la base de données
-header('Location: connexion.php');
+session_destroy(); // déco de la BDD
+header('Location: connexion.php'); // redirection vers la connexion
 ?>

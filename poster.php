@@ -12,48 +12,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // on vérif si le formulaire est s
 
     $postContent = $_POST['post-content'];// on récup le contenu texte du post
 
-    // Récupérer le fichier de la photo du post
-    $photoName = $_FILES['post-photo']['name'];
-    $photoTmpName = $_FILES['post-photo']['tmp_name'];
+    $photoName = $_FILES['post-photo']['name']; // récup la photo du post
+    $photoTmpName = $_FILES['post-photo']['tmp_name']; // temporaire
 
-    // Déplacer la photo vers le dossier de destination
     $destination = 'uploads/' . $photoName;
-    move_uploaded_file($photoTmpName, $destination);
+    move_uploaded_file($photoTmpName, $destination); // on déplace la photo vers le dossier destination
 
-    // Récupérer les informations de l'utilisateur connecté
-    $userID = $_SESSION['ID'];
 
-    // Effectuer une requête SQL pour récupérer les autres informations de l'utilisateur (nom, prénom, photo) à partir de la table "utilisateurs"
+    $userID = $_SESSION['ID']; // réccup l'ID de l'utilisateur co
+
+    //  sql pour récupérer les informations de l'utilisateur co
     $userSql = "SELECT * FROM utilisateurs WHERE ID = '$userID'";
     $userResult = $bdd->query($userSql);
     $userData = $userResult->fetch();
-
     $userId = $userData['ID'];
 
-    // Insérer les informations du post dans la table "posts"
-    $insertSql = "INSERT INTO posts (user_id, content, photo) VALUES ('$userId', '$postContent', '$destination')";
+    $insertSql = "INSERT INTO posts (user_id, content, photo) VALUES ('$userId', '$postContent', '$destination')"; // on insert les infos du post 
     $bdd->query($insertSql);
 
-    // Récupérer l'ID du post nouvellement inséré
-    $postId = $bdd->lastInsertId();
-
-    // Sélectionner tous les utilisateurs (excepté l'utilisateur actuel) pour envoyer la notification
-    $usersSql = "SELECT * FROM utilisateurs WHERE ID != '$userId'";
+    $postId = $bdd->lastInsertId(); 
+    $usersSql = "SELECT * FROM utilisateurs WHERE ID != '$userId'"; // requet SQl pour sélecionner tous les utilisateurs sauf celui connecté pour enovyer une notif
     $usersResult = $bdd->query($usersSql);
 
-    // Vérifier si des utilisateurs ont été sélectionnés
     if ($usersResult) {
-        // Parcourir les utilisateurs et envoyer une notification à chacun
-        while ($userData = $usersResult->fetch()) {
+        while ($userData = $usersResult->fetch()) { 
             $notificationUserId = $userData['ID'];
-
-            // Insérer les informations de la notification dans la table "notifications" en ignorant les duplicatas
+            // on insert les informations de la notification 
             $insertNotificationSql = "INSERT IGNORE INTO notifications (user_id, post_id, content, author_name, author_lastname) VALUES ('$notificationUserId', '$postId', '$postContent', '{$userData['nom']}', '{$userData['prenom']}')";
             $bdd->query($insertNotificationSql);
         }
     }
-
-    // Rediriger vers la page d'accueil après avoir posté le contenu
-    header("Location: accueil.php");
+    header("Location: accueil.php"); // on redirige à l'accueil
     exit();
 }

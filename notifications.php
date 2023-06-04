@@ -32,24 +32,18 @@
     <!-- Section Notifications -->
     <section id="Notifications">
         <?php
-        session_start();
-        $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
+        session_start(); // démarrage de session
+        $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // connexion à la BDD
 
-        // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['ID'])) {
-            // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-            header("Location: connexion.php");
+        if (!isset($_SESSION['ID'])) { // on vérif si l'utilisateur est connecté
+            header("Location: connexion.php"); // on redirige vers la connexion sinon
             exit();
         }
 
-        // Récupérer l'ID de l'utilisateur connecté
-        $userID = $_SESSION['ID'];
+        $userID = $_SESSION['ID']; // on récup l'ID 
 
-        // Récupérer les notifications de l'utilisateur
-        $sqlNotifications = "SELECT notifications.content, notifications.created_at, notifications.author_name, notifications.author_lastname 
-                            FROM notifications
-                            WHERE notifications.user_id = $userID 
-                            ORDER BY notifications.created_at DESC";
+        
+        $sqlNotifications = "SELECT notifications.content, notifications.created_at, notifications.author_name, notifications.author_lastname FROM notifications WHERE notifications.user_id = $userID ORDER BY notifications.created_at DESC"; // on récup les notifications
         $resultNotifications = $bdd->query($sqlNotifications);
 
         // Afficher les notifications
