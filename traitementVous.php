@@ -26,6 +26,7 @@ $db_handle = mysqli_connect('localhost', 'root', '');
 $db_found = mysqli_select_db($db_handle, $database);
 
 // Recup l'ID de l'utilisateur avec la session
+
 $user_id = $_SESSION['ID'];
 
 // On vérif si l'utilisateur connecté existe dans la BDD avec un requete SQL
@@ -99,6 +100,7 @@ if ($result && mysqli_num_rows($result) > 0) // si l'utlisateur existe on met à
     }
 
     if (isset($_POST["generer"])) 
+
     {  // si l'utilisateur clique sur le bouton le CV -> on récpuère les informations dans la BDD 
     
         $user_id = $_SESSION['ID'];
@@ -133,3 +135,4 @@ if ($result && mysqli_num_rows($result) > 0) // si l'utlisateur existe on met à
         }
     }
 }
+
