@@ -73,7 +73,7 @@
                 <?php
                 session_start();
                 // Connexion à la base de données
-                $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
+                $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 
                 // Récupérer l'ID de l'utilisateur connecté
                 $userID = $_SESSION['ID'];

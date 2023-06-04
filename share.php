@@ -1,28 +1,22 @@
 <?php
-session_start();
-// Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
+session_start(); // démarrage de la session
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // Connexion à la base de données
 
-// Récupérer l'ID de l'utilisateur connecté
-$userID = $_SESSION['ID'];
+$userID = $_SESSION['ID']; // on récup l'ID de l'utilisateur connecté
 
-// Vérifier si le paramètre postID est présent dans l'URL
 if (isset($_GET['postID'])) {
-    $postID = $_GET['postID'];
+    $postID = $_GET['postID']; // on récup postID dans l'ID
 
-    // Vérifier si l'utilisateur a déjà partagé le post
-    $sqlCheckShare = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postID AND user_id = $userID";
+    $sqlCheckShare = "SELECT COUNT(*) AS count FROM shares WHERE post_id = $postID AND user_id = $userID"; // requete SQl pour voir si l'utilisateur a déjà partagé le post
     $checkShareResult = $bdd->query($sqlCheckShare);
     $hasShared = $checkShareResult->fetch()['count'] > 0;
 
     if (!$hasShared) {
-        // Ajouter le partage dans la base de données
-        $sqlAddShare = "INSERT INTO shares (post_id, user_id) VALUES ($postID, $userID)";
+        $sqlAddShare = "INSERT INTO shares (post_id, user_id) VALUES ($postID, $userID)"; // ajout du partage dans la base de données
         $bdd->exec($sqlAddShare);
     }
 }
 
-// Rediriger l'utilisateur vers la page d'accueil ou une autre page appropriée
-header("Location: accueil.php");
+header("Location: accueil.php"); // on redirige l'utilisateur vers la page d'accueil
 exit();
 ?>

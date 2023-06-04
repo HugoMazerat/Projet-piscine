@@ -54,7 +54,7 @@
     $offres = $conn->query("SELECT * FROM offres_emploi")->fetchAll(PDO::FETCH_ASSOC);
   } else {
     // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-    header("Location: login.php");
+    header("Location: connexion.php");
     exit();
   }
   ?>

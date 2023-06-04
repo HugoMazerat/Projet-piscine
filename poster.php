@@ -1,19 +1,16 @@
 <?php
-session_start();
+session_start(); // démarrage de la session
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['ID'])) {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-    header("Location: connexion.php");
+if (!isset($_SESSION['ID'])) { // on vérif si l'utilisateur est connecté
+    header("Location: connexion.php"); //on regirige vers la page de connexion si l'utilisateur n'est pas connecté
     exit();
 }
 
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // connexion à la BDD
 
-// Vérifier si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer le contenu du post
-    $postContent = $_POST['post-content'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // on vérif si le formulaire est soumis
+
+    $postContent = $_POST['post-content'];// on récup le contenu texte du post
 
     // Récupérer le fichier de la photo du post
     $photoName = $_FILES['post-photo']['name'];

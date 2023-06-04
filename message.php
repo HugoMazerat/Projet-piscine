@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
 if (!$_SESSION['email']) {
     header('Location: connexion.php');
 }
