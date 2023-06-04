@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = $_POST['email'];
   
   // Connexion à la base de données
-  $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", "");
+  $conn = new PDO("mysql:host=localhost;dbname=linkedin", "root", "Iamtheonewhoknocks");
 
   // Insertion des données dans la table de postulation
   $stmt = $conn->prepare("INSERT INTO postulations (offre_id, nom, prenom, email) VALUES (?, ?, ?, ?)");
