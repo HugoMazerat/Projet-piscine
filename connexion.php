@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // Connexion à la base de données
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks'); // Connexion à la base de données
 
 if(isset($_POST['valider'])) {
     if(!empty($_POST['email']) && !empty($_POST['password'])) {
