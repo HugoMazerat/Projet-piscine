@@ -101,6 +101,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iam
     <!-- Partie centrale -->
     <section id="communication-container">
         <div id="contacts">
+
             <div id="contacts-header">
                 <h2>Les utilisateurs d'EceIn</h2>
             </div>
@@ -113,30 +114,27 @@ $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iam
                         echo " : ";
                         echo $user['email']; ?>
 
-                    <div class="row">
-                        
-                        <div class="column side">
-                            <div class="profile-box">
-                                <img src="fond.jpg">
-                                <div class="profil-info">
-                                    <img src="<?php echo $user['Photo'];?>"  width="30px">
-                                    <h1>
-                                        <?php echo $user['nom'];
-                                        echo " ";
-                                        echo $user['prenom'];
-                                        echo " : ";
-                                        echo $user['email']; ?>
-                                    </h1>
-                                    <h3>
-                                        <?php
-                                        echo $user['Bio'];
-                                        ?>
-                                    </h3>
 
-                                </div>
-                            </div>
+                    <div class="profile-box">
+                        <img src="fond.jpg">
+                        <div class="profil-info">
+                            <img src="<?php echo $user['Photo']; ?>" width="30px">
+                            <h1>
+                                <?php echo $user['nom'];
+                                echo " ";
+                                echo $user['prenom'];
+                                echo " : ";
+                                echo $user['email']; ?>
+                            </h1>
+                            <h3>
+                                <?php
+                                echo $user['Bio'];
+                                ?>
+                            </h3>
+
                         </div>
                     </div>
+
 
                     <!-- Formulaire pour envoyer une demande d'amitié -->
                     <form method="post" action="">
