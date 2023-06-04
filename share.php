@@ -2,7 +2,7 @@
 session_start(); // démarrage de la session
 $bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', ''); // Connexion à la base de données
 
-$userID = $_SESSION['ID']; // on récup l'ID de l'utilisateur connecté
+$user_ID = $_SESSION['ID']; // on récup l'ID de l'utilisateur connecté
 
 if (isset($_GET['postID'])) {
     $postID = $_GET['postID']; // on récup postID dans l'ID
