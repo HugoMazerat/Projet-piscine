@@ -1,6 +1,6 @@
 <?php
 session_start(); // Connexion à la base de données
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
 ?>
 
 

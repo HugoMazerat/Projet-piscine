@@ -8,7 +8,7 @@ if (!isset($_SESSION['ID'])) {
     exit();
 }
 
-$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=linkedin;charset=utf8', 'root', 'Iamtheonewhoknocks');
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
